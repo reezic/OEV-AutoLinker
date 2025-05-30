@@ -375,11 +375,11 @@ void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const
 
     const std::filesystem::path toFilePath =
         std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
-        ("Save " + std::to_string(fileNumber + 1)) / toData.folder / (toData.name + ".md");
+        ("Save " + std::to_string(fileNumber)) / toData.folder / (toData.name + ".md");
 
     const std::filesystem::path fromFilePath =
         std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
-        ("Save " + std::to_string(fileNumber + 1)) / fromData.folder / (fromData.name + ".md");
+        ("Save " + std::to_string(fileNumber)) / fromData.folder / (fromData.name + ".md");
 
     // Check and create files if they don't exist
     if (!std::filesystem::exists(fromFilePath)) {
@@ -393,6 +393,11 @@ void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const
 }
 
 void CheckForUnlinkedEntrances() {
+    // Only run if file has been loaded and sceneNum is valid
+    if (!fileNumber) {
+        return;
+    }
+
     // Get the entrance shuffler context
     auto entranceCtx = Rando::Context::GetInstance()->GetEntranceShuffler();
 
@@ -452,12 +457,6 @@ void CheckForUnlinkedEntrances() {
 // On scene initialization, check if any entrances that
 // have not already been linked have been discovered and if so, link them
 void OnSceneInit(u16 sceneNum) {
-
-    // Only run if file has been loaded and sceneNum is valid
-    if (!sceneNum || (!fileNumber && fileNumber != 0)) {
-        return;
-    }
-
     std::cout << std::endl << "[OEV AutoLinker] Scene " << sceneNum << " initialized." << std::endl;
 
     // Check for discovered entrances that are not linked, and link them
@@ -469,14 +468,14 @@ void OnSceneInit(u16 sceneNum) {
 
 // Initialize entrances and
 void InitializeEntranceData(int32_t fileNum) {
-    std::cout << std::endl << "[OEV AutoLinker] Game " << fileNum + 1 << " loaded" << std::endl;
 
     // Set file number to use
-    fileNumber = fileNum;
+    fileNumber = fileNum + 1;
 
     // Check for discovered entrances that are not linked, and link them
     CheckForUnlinkedEntrances();
 
+    std::cout << std::endl << "[OEV AutoLinker] Game " << fileNum << " loaded" << std::endl;
     std::cout << std::endl;
 }
 
