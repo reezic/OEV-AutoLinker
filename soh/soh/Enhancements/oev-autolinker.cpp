@@ -62,6 +62,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Deku Tree Boss Door",        "#DekuTree",     "color_DekuTree",     "Kokiri Forest" },
     { "Gohma",                      "#Gohma",        "color_DekuTree",     "Kokiri Forest" },
     { "Gohma Blue Warp",            "#Gohma",        "color_DekuTree",     "Kokiri Forest" },
+    { "Deku Tree Blue Warp",        "#KokiriForest", "color_KokiriForest", "Kokiri Forest" },
 
     // Lost Woods
     { "Lost Woods Bridge East Exit",    "#LostWoodsBridge", "color_KokiriForest", "Lost Woods" },
@@ -90,6 +91,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Forest Temple Boss Door",                    "#ForestTemple",       "color_ForestTemple", "Sacred Forest Meadow" },
     { "Phantom Ganon",                              "#PhantomGanon",       "color_ForestTemple", "Sacred Forest Meadow" },
     { "Phantom Ganon Blue Warp",                    "#PhantomGanon",       "color_ForestTemple", "Sacred Forest Meadow" },
+    { "Forest Temple Blue Warp",                    "#SacredForestMeadow", "color_KokiriForest", "Sacred Forest Meadow" },
     { "SFM Warp Pad",                               "#KokiriForest",       "color_KokiriForest", "Ocarina Songs" },
 
     // Kakariko Village
@@ -141,6 +143,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Shadow Temple Boss Door",      "#ShadowTemple",           "color_ShadowTemple",    "Graveyard" },
     { "Bongo-Bongo",                  "#BongoBongo",             "color_ShadowTemple",    "Graveyard" },
     { "Bongo-Bongo Blue Warp",        "#BongoBongo",             "color_ShadowTemple",    "Graveyard" },
+    { "Shadow Temple Blue Warp",      "#Graveyard",              "color_KakarikoVillage", "Graveyard" },
     { "Graveyard Warp Pad",           "#Graveyard",              "color_KakarikoVillage", "Ocarina Songs" },
 
     // Death Mountain Trail
@@ -159,6 +162,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Dodongo's Cavern Boss Door",                    "#DodongosCavern",     "color_DodongosCavern", "Death Mountain Trail" },
     { "King Dodongo",                                  "#KingDodongo",        "color_DodongosCavern", "Death Mountain Trail" },
     { "King Dodongo Blue Warp",                        "#KingDodongo",        "color_DodongosCavern", "Death Mountain Trail" },
+    { "Dodongo's Cavern Blue Warp",                    "#DeathMountainTrail", "color_DeathMountain",  "Death Mountain Trail" },
 
     // Death Mountain Crater
     { "Death Mountain Crater Bridge Exit",    "#DeathMountainCrater", "color_DeathMountain", "Death Mountain Crater" },
@@ -174,6 +178,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Fire Temple Boss Door",                "#FireTemple",          "color_FireTemple",    "Death Mountain Crater" },
     { "Volvagia",                             "#Volvagia",            "color_FireTemple",    "Death Mountain Crater" },
     { "Volvagia Blue Warp",                   "#Volvagia",            "color_FireTemple",    "Death Mountain Crater" },
+    { "Fire Temple Blue Warp",                "#DeathMountainCrater", "color_DeathMountain", "Death Mountain Crater" },
     { "DMC Warp Pad",                         "#DeathMountainCrater", "color_DeathMountain", "Ocarina Songs" },
 
     // Goron City
@@ -215,6 +220,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Jabu Jabu's Belly Boss Door",        "#JabuJabu",      "color_JabuJabu",      "Zora's Fountain" },
     { "Barinade",                           "#Barinade",      "color_JabuJabu",      "Zora's Fountain" },
     { "Barinade Blue Warp",                 "#Barinade",      "color_JabuJabu",      "Zora's Fountain" },
+    { "Jabu Jabu's Belly Blue Warp",        "#ZorasFountain", "color_ZorasFountain", "Zora's Fountain" },
     { "Ice Cavern Entrance",                "",               "color_IceCavern",     "Zora's Fountain" },
 
     // Hyrule Field
@@ -269,6 +275,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Water Temple Boss Door",         "#WaterTemple", "color_WaterTemple", "Lake Hylia" },
     { "Morpha",                         "#Morpha",      "color_WaterTemple", "Lake Hylia" },
     { "Morpha Blue Warp",               "#Morpha",      "color_WaterTemple", "Lake Hylia" },
+    { "Water Temple Blue Warp",         "#LakeHylia",   "color_LakeHylia",   "Lake Hylia" },
     { "Lake Hylia Warp Pad",            "#LakeHylia",   "color_LakeHylia",   "Ocarina Songs" },
 
     // Gerudo Area
@@ -303,6 +310,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Spirit Temple Boss Door",       "#SpiritTemple",   "color_SpiritTemple",   "Desert Colossus" },
     { "Twinrova",                      "#Twinrova",       "color_SpiritTemple",   "Desert Colossus" },
     { "Twinrova Blue Warp",            "#Twinrova",       "color_SpiritTemple",   "Desert Colossus" },
+    { "Spirit Temple Blue Warp",        "#SpiritTemple",   "color_DesertColossus", "Desert Colossus" },
     { "Desert Colossus Warp Pad",      "#DesertColossus", "color_DesertColossus", "Ocarina Songs" },
 
     // Market
@@ -412,9 +420,9 @@ void CheckForUnlinkedEntrances() {
         EntranceOverride entrance = entranceCtx->entranceOverrides[i];
 
         // If not discovered, skip this loop iteration
-        /*if (!IsEntranceDiscovered(entrance.index)) {
+        if (!IsEntranceDiscovered(entrance.index)) {
             continue;
-        }*/
+        }
 
         // Check if one or the other side of the entrance has already been linked
         bool alreadyLinked = false;
