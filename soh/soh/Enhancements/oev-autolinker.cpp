@@ -89,6 +89,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Forest Temple Boss Door", "#ForestTemple", "color_ForestTemple", "Sacred Forest Meadow" },
     { "Phantom Ganon", "#PhantomGanon", "color_ForestTemple", "Sacred Forest Meadow" },
     { "Phantom Ganon Blue Warp", "#PhantomGanon", "color_ForestTemple", "Sacred Forest Meadow" },
+    //{ "SFM Warp Pad", "#KokiriForest", "color_KokiriForest", "Ocarina Songs" },
 
     // Kakariko Village
     { "Kakariko Front Gate", "#KakarikoVillage", "color_KakarikoVillage", "Kakariko Village" },
@@ -138,6 +139,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Shadow Temple Boss Door", "#ShadowTemple", "color_ShadowTemple", "Graveyard" },
     { "Bongo-Bongo", "#BongoBongo", "color_ShadowTemple", "Graveyard" },
     { "Bongo-Bongo Blue Warp", "#BongoBongo", "color_ShadowTemple", "Graveyard" },
+    //{ "Graveyard Warp Pad", "#Graveyard", "color_KakarikoVillage", "Ocarina Songs" },
 
     // Death Mountain Trail
     { "DMT Owl Flight", "#DeathMountainTrail", "color_DeathMountain", "Death Mountain Trail" },
@@ -171,6 +173,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Fire Temple Boss Door", "#FireTemple", "color_FireTemple", "Death Mountain Crater" },
     { "Volvagia", "#Volvagia", "color_FireTemple", "Death Mountain Crater" },
     { "Volvagia Blue Warp", "#Volvagia", "color_FireTemple", "Death Mountain Crater" },
+    //{ "DMC Warp Pad", "#DeathMountainCrater", "color_DeathMountain", "Ocarina Songs" },
 
     // Goron City
     { "Goron City Upper Exit", "#GoronCity", "color_GoronCity", "Goron City" },
@@ -264,6 +267,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Water Temple Boss Door", "#WaterTemple", "color_WaterTemple", "Lake Hylia" },
     { "Morpha", "#Morpha", "color_WaterTemple", "Lake Hylia" },
     { "Morpha Blue Warp", "#Morpha", "color_WaterTemple", "Lake Hylia" },
+    //{ "Lake Hylia Warp Pad", "#LakeHylia", "color_LakeHylia", "Ocarina Songs" },
 
     // Gerudo Area
     { "Gerudo Valley East Exit", "#GerudoValley", "color_GerudoValley", "Gerudo Valley" },
@@ -297,6 +301,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Spirit Temple Boss Door", "#SpiritTemple", "color_SpiritTemple", "Desert Colossus" },
     { "Twinrova", "#Twinrova", "color_SpiritTemple", "Desert Colossus" },
     { "Twinrova Blue Warp", "#Twinrova", "color_SpiritTemple", "Desert Colossus" },
+    //{ "Desert Colossus Warp Pad", "#DesertColossus", "color_DesertColossus", "Ocarina Songs" },
 
     // Market
     { "Market Entrance South Exit", "#HyruleMarket", "color_HyruleMarket", "Hyrule Market" },
@@ -325,6 +330,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "ToT Courtyard Gossip Stones Exit", "#TempleOfTimeCourtyard", "color_TempleofTime", "Hyrule Market" },
     { "ToT Courtyard Temple Entry", "#TempleOfTimeCourtyard", "color_TempleofTime", "Hyrule Market" },
     { "Temple of Time Entrance", "#TempleOfTime", "color_TempleofTime", "Hyrule Market" },
+    //{ "Temple of Time Warp Pad", "#TempleofTime", "color_TempleofTime", "Ocarina Songs" },
 
     // Hyrule Castle
     { "Castle Grounds South Exit", "#HyruleCastle", "color_HyruleCastle", "Hyrule Castle" },
@@ -362,13 +368,6 @@ void CreateObsidianFile(const std::filesystem::path path, const OEVEntranceData&
 
 // Link two entrances together by creating markdown files in the OEV folder
 void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const std::string& toName) {
-    // Check if the entrance names are valid
-    if (entranceNameMap.find(toName) == entranceNameMap.end() ||
-        entranceNameMap.find(fromName) == entranceNameMap.end()) {
-        std::cerr << "One of the names is missing from the entrance name mapping.\n";
-        return;
-    }
-
     // Create the folder structure
     const auto& toData = entranceNameMap[toName];
     const auto& fromData = entranceNameMap[fromName];
