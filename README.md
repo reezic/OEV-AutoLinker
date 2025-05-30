@@ -4,7 +4,7 @@ _Latest release is based on SoH 9.0.2._
 
 <br>
 
-If you have any questions about Ship of Harkinian, and how to get started, you can read more about the project at [the project's homepage](https://www.shipofharkinian.com/)<br>
+If you have any questions about Ship of Harkinian, and how to get started, you can read more on [the project's homepage](https://www.shipofharkinian.com/)<br>
 Official releases can be found at [SoH's GitHub](https://github.com/HarbourMasters/Shipwright)
 
 <br>
