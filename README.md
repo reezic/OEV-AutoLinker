@@ -1,6 +1,5 @@
 ## Obsidian Entrance Visualizer, AutoLinker for SoH
 This build of Ship of Harkinian includes an automated alternative to the ["OoT Obsidian Entrance Visualizer" Obsidian Template](https://github.com/reezic/OoT-OEV).<br>
-_Latest release is based on SoH 9.0.2._
 
 <br>
 
