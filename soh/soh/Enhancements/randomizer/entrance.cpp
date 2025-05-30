@@ -1571,45 +1571,55 @@ void EntranceShuffler::CreateEntranceOverrides() {
     int i = 0;
     for (Entrance* entrance : allShuffleableEntrances) {
 
-        // Include blue warps when dungeons or bosses are shuffled
-        bool includeBluewarps =
-            entrance->GetType() == Rando::EntranceType::BlueWarp &&
-            (ctx->GetOption(RSK_SHUFFLE_DUNGEON_ENTRANCES) || ctx->GetOption(RSK_SHUFFLE_BOSS_ENTRANCES));
-
-        // Double-check to make sure the entrance is actually shuffled
-        if (!entrance->IsShuffled() && !includeBluewarps) {
-            continue;
-        }
-
         auto message = "Setting " + entrance->to_string() + "\n";
         SPDLOG_DEBUG(message);
 
         uint8_t type = (uint8_t)entrance->GetType();
         int16_t originalIndex = entrance->GetIndex();
-        int16_t replacementIndex = entrance->GetReplacement()->GetIndex();
-
         int16_t destinationIndex = -1;
-        int16_t replacementDestinationIndex = -1;
 
-        // Only set destination indices for two way entrances and when decouple entrances
-        // is off
-        if (entrance->GetReverse() != nullptr && !ctx->GetOption(RSK_DECOUPLED_ENTRANCES)) {
-            replacementDestinationIndex = entrance->GetReplacement()->GetReverse()->GetIndex();
-            destinationIndex = entrance->GetReverse()->GetIndex();
+        Entrance* replacement = entrance->GetReplacement();
+
+        if (replacement != nullptr) {
+            int16_t replacementIndex = replacement->GetIndex();
+            int16_t replacementDestinationIndex = -1;
+
+            // Only set destination indices for two way entrances and when decouple entrances
+            // is off
+            if (entrance->GetReverse() != nullptr && !ctx->GetOption(RSK_DECOUPLED_ENTRANCES)) {
+                replacementDestinationIndex = entrance->GetReplacement()->GetReverse()->GetIndex();
+                destinationIndex = entrance->GetReverse()->GetIndex();
+            }
+
+            entranceOverrides[i] = {
+                .type = type,
+                .index = originalIndex,
+                .destination = destinationIndex,
+                .override = replacementIndex,
+                .overrideDestination = replacementDestinationIndex,
+            };
+
+            message = "\tOriginal: " + std::to_string(originalIndex) + "\n";
+            SPDLOG_DEBUG(message);
+            message = "\tReplacement " + std::to_string(replacementIndex) + "\n";
+            SPDLOG_DEBUG(message);
+        } else {
+            if (entrance->GetReverse() != nullptr) {
+                destinationIndex = entrance->GetReverse()->GetIndex();
+            }
+
+            entranceOverrides[i] = {
+                .type = type,
+                .index = originalIndex,
+                .destination = destinationIndex,
+                .override = originalIndex,
+                .overrideDestination = destinationIndex,
+            };
+
+            message = "\tNo replacement, using original: " + std::to_string(originalIndex) + "\n";
+            SPDLOG_DEBUG(message);
         }
 
-        entranceOverrides[i] = {
-            .type = type,
-            .index = originalIndex,
-            .destination = destinationIndex,
-            .override = replacementIndex,
-            .overrideDestination = replacementDestinationIndex,
-        };
-
-        message = "\tOriginal: " + std::to_string(originalIndex) + "\n";
-        SPDLOG_DEBUG(message);
-        message = "\tReplacement " + std::to_string(replacementIndex) + "\n";
-        SPDLOG_DEBUG(message);
         i++;
     }
 }
