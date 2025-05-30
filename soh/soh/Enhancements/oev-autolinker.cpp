@@ -23,9 +23,6 @@ struct OEVEntranceData {
     std::string folder;
 };
 
-// For mapping the entrance names between entranceData and oevEntranceData
-std::unordered_map<std::string, OEVEntranceData> entranceNameMap;
-
 // Entrance metadata mapping for OEV
 const OEVEntranceData oevEntranceData[] = {
     // clang-format off
@@ -357,7 +354,7 @@ const OEVEntranceData oevEntranceData[] = {
 };
 
 // Lambda function for finding a name in oevEntranceData
-auto oevEntranceNames = [](const std::string& name) -> OEVEntranceData {
+auto oevEntranceSearch = [](const std::string& name) -> OEVEntranceData {
     for (const OEVEntranceData data : oevEntranceData) {
         if (data.name == name)
             return data;
@@ -381,8 +378,8 @@ void CreateObsidianFile(const std::filesystem::path path, const OEVEntranceData&
 // Link two entrances together by creating markdown files in the OEV folder
 void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const std::string& toName) {
     // Create the folder structure
-    const auto& toData = entranceNameMap[toName];
-    const auto& fromData = entranceNameMap[fromName];
+    OEVEntranceData toData = oevEntranceSearch(toName);
+    OEVEntranceData fromData = oevEntranceSearch(fromName);
 
     const std::filesystem::path toFilePath =
         std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
@@ -455,10 +452,8 @@ void CheckForUnlinkedEntrances() {
         }
 
         // Find the matching markdown metadata mapping in oevEntranceData
-        OEVEntranceData fromOEVData = oevEntranceNames(fromName);
-        OEVEntranceData toOEVData = oevEntranceNames(toName);
-        entranceNameMap[fromName] = fromOEVData;
-        entranceNameMap[toName] = toOEVData;
+        OEVEntranceData fromOEVData = oevEntranceSearch(fromName);
+        OEVEntranceData toOEVData = oevEntranceSearch(toName);
 
         // Link the entrance
         LinkEntrances(fileNumber, fromName, toName);
