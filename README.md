@@ -28,7 +28,7 @@ _In the example above, interiors and grottos are randomized and mixed, overworld
 <br>
 
 ## How does it work?
-* [Download the latest release of OEV AutoLinker](https://github.com/reezic/OEV-AutoLinker/releases/tag/1.1)
+* [Download the latest release of OEV AutoLinker](https://github.com/reezic/OEV-AutoLinker/releases/tag/1.2)
   
 * [Download Obsidian](https://obsidian.md/)
 
