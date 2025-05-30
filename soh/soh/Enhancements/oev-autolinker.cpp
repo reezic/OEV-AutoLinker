@@ -90,7 +90,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Forest Temple Boss Door",                    "#ForestTemple",       "color_ForestTemple", "Sacred Forest Meadow" },
     { "Phantom Ganon",                              "#PhantomGanon",       "color_ForestTemple", "Sacred Forest Meadow" },
     { "Phantom Ganon Blue Warp",                    "#PhantomGanon",       "color_ForestTemple", "Sacred Forest Meadow" },
-    //{ "SFM Warp Pad", "#KokiriForest", "color_KokiriForest", "Ocarina Songs" },
+    { "SFM Warp Pad",                               "#KokiriForest",       "color_KokiriForest", "Ocarina Songs" },
 
     // Kakariko Village
     { "Kakariko Front Gate",            "#KakarikoVillage",        "color_KakarikoVillage", "Kakariko Village" },
@@ -109,6 +109,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Kak Open Grotto Entry",          "#KakarikoVillage",        "color_Grotto",          "Kakariko Village" },
     { "Kak Center Grotto Entry",        "#KakarikoVillage",        "color_Grotto",          "Kakariko Village" },
     { "Kakariko Outside the Well",      "#KakarikoVillage",        "color_KakarikoVillage", "Kakariko Village" },
+    { "Kakariko Village Owl Drop",      "#KakarikoVillage",        "color_KakarikoVillage", "Kakariko Village" },
     { "Carpenter Boss House",           "",                        "color_KakarikoVillage", "Kakariko Village" },
     { "House of Skulltula",             "",                        "color_KakarikoVillage", "Kakariko Village" },
     { "Impa's House Front",             "",                        "color_KakarikoVillage", "Kakariko Village" },
@@ -140,7 +141,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Shadow Temple Boss Door",      "#ShadowTemple",           "color_ShadowTemple",    "Graveyard" },
     { "Bongo-Bongo",                  "#BongoBongo",             "color_ShadowTemple",    "Graveyard" },
     { "Bongo-Bongo Blue Warp",        "#BongoBongo",             "color_ShadowTemple",    "Graveyard" },
-    //{ "Graveyard Warp Pad", "#Graveyard", "color_KakarikoVillage", "Ocarina Songs" },
+    { "Graveyard Warp Pad",           "#Graveyard",              "color_KakarikoVillage", "Ocarina Songs" },
 
     // Death Mountain Trail
     { "DMT Owl Flight",                                "#DeathMountainTrail", "color_DeathMountain",  "Death Mountain Trail" },
@@ -173,7 +174,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Fire Temple Boss Door",                "#FireTemple",          "color_FireTemple",    "Death Mountain Crater" },
     { "Volvagia",                             "#Volvagia",            "color_FireTemple",    "Death Mountain Crater" },
     { "Volvagia Blue Warp",                   "#Volvagia",            "color_FireTemple",    "Death Mountain Crater" },
-    //{ "DMC Warp Pad", "#DeathMountainCrater", "color_DeathMountain", "Ocarina Songs" },
+    { "DMC Warp Pad",                         "#DeathMountainCrater", "color_DeathMountain", "Ocarina Songs" },
 
     // Goron City
     { "Goron City Upper Exit",              "#GoronCity", "color_GoronCity", "Goron City" },
@@ -214,7 +215,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Jabu Jabu's Belly Boss Door",        "#JabuJabu",      "color_JabuJabu",      "Zora's Fountain" },
     { "Barinade",                           "#Barinade",      "color_JabuJabu",      "Zora's Fountain" },
     { "Barinade Blue Warp",                 "#Barinade",      "color_JabuJabu",      "Zora's Fountain" },
-    { "Ice Cavern Entrance",                "#IceCavern",     "color_IceCavern",     "Zora's Fountain" },
+    { "Ice Cavern Entrance",                "",               "color_IceCavern",     "Zora's Fountain" },
 
     // Hyrule Field
     { "Hyrule Field Wooded Exit",            "#HyruleField", "color_HyruleField", "Hyrule Field" },
@@ -224,6 +225,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Hyrule Field River Exit",             "#HyruleField", "color_HyruleField", "Hyrule Field" },
     { "Hyrule Field Fence Exit",             "#HyruleField", "color_HyruleField", "Hyrule Field" },
     { "Hyrule Field Rocky Path",             "#HyruleField", "color_HyruleField", "Hyrule Field" },
+    { "Hyrule Field Owl Drop",               "#HyruleField", "color_HyruleField", "Hyrule Field" },
     { "HF Near Market Boulder Grotto Entry", "#HyruleField", "color_Grotto",      "Hyrule Field" },
     { "HF Stone Bridge Tree Grotto Entry",   "#HyruleField", "color_Grotto",      "Hyrule Field" },
     { "HF Northwest Tree Grotto Entry",      "#HyruleField", "color_Grotto",      "Hyrule Field" },
@@ -267,7 +269,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Water Temple Boss Door",         "#WaterTemple", "color_WaterTemple", "Lake Hylia" },
     { "Morpha",                         "#Morpha",      "color_WaterTemple", "Lake Hylia" },
     { "Morpha Blue Warp",               "#Morpha",      "color_WaterTemple", "Lake Hylia" },
-    //{ "Lake Hylia Warp Pad", "#LakeHylia", "color_LakeHylia", "Ocarina Songs" },
+    { "Lake Hylia Warp Pad",            "#LakeHylia",   "color_LakeHylia",   "Ocarina Songs" },
 
     // Gerudo Area
     { "Gerudo Valley East Exit",         "#GerudoValley", "color_GerudoValley",         "Gerudo Valley" },
@@ -301,7 +303,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Spirit Temple Boss Door",       "#SpiritTemple",   "color_SpiritTemple",   "Desert Colossus" },
     { "Twinrova",                      "#Twinrova",       "color_SpiritTemple",   "Desert Colossus" },
     { "Twinrova Blue Warp",            "#Twinrova",       "color_SpiritTemple",   "Desert Colossus" },
-    //{ "Desert Colossus Warp Pad", "#DesertColossus", "color_DesertColossus", "Ocarina Songs" },
+    { "Desert Colossus Warp Pad",      "#DesertColossus", "color_DesertColossus", "Ocarina Songs" },
 
     // Market
     { "Market Entrance South Exit",       "#MarketEntrance",        "color_HyruleMarket", "Hyrule Market" },
@@ -329,18 +331,18 @@ const OEVEntranceData oevEntranceData[] = {
     { "Bombchu Shop",                     "",                       "color_HyruleMarket", "Hyrule Market" },
     { "ToT Courtyard Gossip Stones Exit", "#TempleOfTimeCourtyard", "color_TempleofTime", "Hyrule Market" },
     { "ToT Courtyard Temple Entry",       "#TempleOfTimeCourtyard", "color_TempleofTime", "Hyrule Market" },
-    { "Temple of Time Entrance",          "",                       "color_TempleofTime", "Hyrule Market" },
-    //{ "Temple of Time Warp Pad", "#TempleofTime", "color_TempleofTime", "Ocarina Songs" },
+    { "Temple of Time Entrance",          "#TempleofTime",          "color_TempleofTime", "Hyrule Market" },
+    { "Temple of Time Warp Pad",          "#TempleofTime",          "color_TempleofTime", "Ocarina Songs" },
 
     // Hyrule Castle
     { "Castle Grounds South Exit",      "#HyruleCastle", "color_HyruleCastle", "Hyrule Castle" },
-    { "HC Boulder Crawlspace",          "#HyruleCastle", "color_Grotto", "Hyrule Castle" },
-    { "HC Storms Grotto Entry",         "#HyruleCastle", "color_Grotto", "Hyrule Castle" },
-    { "HC Great Fairy Fountain",        "",              "color_Grotto", "Hyrule Castle" },
-    { "HC Storms Grotto",               "",              "color_Grotto", "Hyrule Castle" },
+    { "HC Boulder Crawlspace",          "#HyruleCastle", "color_Grotto",       "Hyrule Castle" },
+    { "HC Storms Grotto Entry",         "#HyruleCastle", "color_Grotto",       "Hyrule Castle" },
+    { "HC Great Fairy Fountain",        "",              "color_Grotto",       "Hyrule Castle" },
+    { "HC Storms Grotto",               "",              "color_Grotto",       "Hyrule Castle" },
     { "OGC Behind Pillar",              "#HyruleCastle", "color_HyruleCastle", "Hyrule Castle" },
     { "OGC Rainbow Bridge Exit",        "#HyruleCastle", "color_HyruleCastle", "Hyrule Castle" },
-    { "OGC Great Fairy Fountain",       "",              "color_Grotto", "Hyrule Castle" },
+    { "OGC Great Fairy Fountain",       "",              "color_Grotto",       "Hyrule Castle" },
     { "Inside Ganon's Castle Entrance", "#GanonsCastle", "color_GanonsCastle", "Hyrule Castle" }
 
     // clang-format on
@@ -410,9 +412,9 @@ void CheckForUnlinkedEntrances() {
         EntranceOverride entrance = entranceCtx->entranceOverrides[i];
 
         // If not discovered, skip this loop iteration
-        if (!IsEntranceDiscovered(entrance.index)) {
+        /*if (!IsEntranceDiscovered(entrance.index)) {
             continue;
-        }
+        }*/
 
         // Check if one or the other side of the entrance has already been linked
         bool alreadyLinked = false;
@@ -439,13 +441,18 @@ void CheckForUnlinkedEntrances() {
         std::string fromName = GetEntranceData(entrance.index)->source;
         std::string toName = GetEntranceData(entrance.override)->destination;
 
+        // Special case
+        if (toName == "Temple of Time") {
+            toName = "Temple of Time Warp Pad";
+        }
+
         // Find the matching markdown metadata mapping in oevEntranceData
         OEVEntranceData fromOEVData = oevEntranceNames(fromName);
         OEVEntranceData toOEVData = oevEntranceNames(toName);
         entranceNameMap[fromName] = fromOEVData;
         entranceNameMap[toName] = toOEVData;
 
-        // Link the entrances
+        // Link the entrance
         LinkEntrances(fileNumber, fromName, toName);
 
         // Add the entrance to linkedEntrances
