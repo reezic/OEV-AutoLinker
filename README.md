@@ -9,11 +9,29 @@ Official releases can be found at [SoH's GitHub](https://github.com/HarbourMaste
 
 <br>
 
-## How does it work?
-* [Download the latest release of OEV AutoLinker](https://github.com/reezic/OEV-AutoLinker/releases/tag/1.0)
-* [Download Obsidian](https://obsidian.md/)
+<table>
+  <tr>
+    <th>No randomization</th>
+    <th>Randomized</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/2e6a8714-23dd-4a96-a705-f5931d7d3045" width="600">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/1b5ec198-2f24-4a71-aa57-bb71046b8449" width="600">
+    </td>
+  </tr>
+</table>
+
+_In the example above, interiors and grottos are randomized and mixed, overworld spawns are also randomized._
 
 <br>
+
+## How does it work?
+* [Download the latest release of OEV AutoLinker](https://github.com/reezic/OEV-AutoLinker/releases/tag/1.0)
+  
+* [Download Obsidian](https://obsidian.md/)
 
 * A folder named "Obsidian Entrance Visualizer" is included in the root folder of the release which contains an Obsidian vault for each save slot in the game
 
@@ -22,8 +40,6 @@ Official releases can be found at [SoH's GitHub](https://github.com/HarbourMaste
 * Start a new save with randomized entrances
 
 * Watch as Obsidian's graph view automatically creates a map of the game's world as you explore it!
-
-<br>
 
 #### _Notes_
 
@@ -49,3 +65,5 @@ To load saved node layouts click "Persistent Graph: Restore graph node locations
 Requires you to follow the build instructions on libasoles' GitHub.
 
 This plugin allows you to change the text size and color of the node text so that it matches with the color of the node itself, making the map more readable.
+
+(If nodes aren't updating with the correct styles, just click one of the tag nodes and they should refresh)
