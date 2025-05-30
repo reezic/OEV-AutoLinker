@@ -15,10 +15,10 @@ Official releases can be found at [SoH's GitHub](https://github.com/HarbourMaste
   </tr>
   <tr>
     <td>
-      <img src="https://github.com/user-attachments/assets/2e6a8714-23dd-4a96-a705-f5931d7d3045" width="600">
+      <img src="https://github.com/user-attachments/assets/ee416ccb-8728-4a2a-97bc-3badffd67a4d" width="600">
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/1b5ec198-2f24-4a71-aa57-bb71046b8449" width="600">
+      <img src="https://github.com/user-attachments/assets/20837f85-560a-4481-a62b-e2c79dc40f35" width="600">
     </td>
   </tr>
 </table>
