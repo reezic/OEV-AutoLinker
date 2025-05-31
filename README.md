@@ -34,7 +34,7 @@ _In the example above, interiors and grottos are randomized and mixed, overworld
 
 * A folder named "Obsidian Entrance Visualizer" is included in the root folder of the release which contains an Obsidian vault for each save slot in the game
 
-* Open the save slot you intend to use as a vault in Obsidian, and open the graph view
+* In Obsidian, open the vault matching the save slot you intend to use, and open the graph view
 
 * Start a new save with randomized entrances
 
