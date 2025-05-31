@@ -364,20 +364,42 @@ auto oevEntranceSearch = [](const std::string& name) -> OEVEntranceData {
 };
 
 // Create the obsidian markdown file for a given entrance
-void CreateObsidianFile(const std::filesystem::path path, const OEVEntranceData& data, const std::string& linksTo) {
+void CreateObsidianFile(const std::filesystem::path path, const OEVEntranceData& data) {
     // Create folder path if it doesn't exist
     std::filesystem::create_directories(path.parent_path());
 
     // Write to the new markdown file
     std::ofstream outFile(path);
-    outFile << "Links to: [[" << linksTo << "]]\n";
+    outFile << "Links to:\n";
     outFile << "Tag: " << data.tag << "\n";
     outFile << "Color: " << data.color << "\n";
     outFile.close();
 }
 
+// Create the obsidian markdown file for a given entrance
+void AddLinksToFile(const std::filesystem::path path, const std::string& linksTo) {
+    // Find the "Links to:" line and add the link if not already present
+    std::ifstream inFile(path);
+    std::string fileContent;
+    std::string line;
+    std::string markdownLink = "[[" + linksTo + "]]";
+    while (std::getline(inFile, line)) {
+        if (line.rfind("Links to:", 0) == 0) {
+            if (line.find(markdownLink) == std::string::npos) {
+                line += " " + markdownLink;
+            }
+        }
+        fileContent += line + "\n";
+    }
+    inFile.close();
+
+    std::ofstream outFile(path);
+    outFile << fileContent;
+    outFile.close();
+}
+
 // Link two entrances together by creating markdown files in the OEV folder
-void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const std::string& toName) {
+void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const std::string& toName, const bool& isOneWay) {
     // Create the folder structure
     OEVEntranceData toData = oevEntranceSearch(toName);
     OEVEntranceData fromData = oevEntranceSearch(fromName);
@@ -390,14 +412,20 @@ void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const
         std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
         ("Save " + std::to_string(fileNumber)) / fromData.folder / (fromData.name + ".md");
 
-    // Check and create files if they don't exist
+    // Check and create file if it doesn't exist
     if (!std::filesystem::exists(fromFilePath)) {
-        CreateObsidianFile(fromFilePath, fromData, toData.name);
+        CreateObsidianFile(fromFilePath, fromData);
+    }
+    if (!std::filesystem::exists(toFilePath)) {
+        CreateObsidianFile(toFilePath, toData);
     }
 
-    // Check and create files if they don't exist
-    if (!std::filesystem::exists(toFilePath)) {
-        CreateObsidianFile(toFilePath, toData, fromData.name);
+    // Add source->destination link
+    AddLinksToFile(fromFilePath, toData.name);
+
+    if (!isOneWay) {
+        // Add backlink
+        AddLinksToFile(toFilePath, fromData.name);
     }
 }
 
@@ -446,6 +474,7 @@ void CheckForUnlinkedEntrances() {
         // Get the source and destination names from the randomizer's entrance data
         std::string fromName = GetEntranceData(entrance.index)->source;
         std::string toName = GetEntranceData(entrance.override)->destination;
+        bool isOneWay = GetEntranceData(entrance.override)->reverseIndex == -1;
 
         // Special case
         if (toName == "Temple of Time") {
@@ -457,7 +486,7 @@ void CheckForUnlinkedEntrances() {
         OEVEntranceData toOEVData = oevEntranceSearch(toName);
 
         // Link the entrance
-        LinkEntrances(fileNumber, fromName, toName);
+        LinkEntrances(fileNumber, fromName, toName, isOneWay);
 
         // Add the entrance to linkedEntrances
         linkedEntrances[i] = entrance;
