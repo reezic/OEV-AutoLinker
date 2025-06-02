@@ -857,6 +857,10 @@ void EntranceTrackerWindow::DrawElement() {
 
             EntranceOverride entrance = entranceList[trueIdx];
 
+            if (entrance.index == entrance.override) { // Do not show unshuffled entrances
+                continue;
+            }
+
             const EntranceData* original = GetEntranceData(entrance.index);
             const EntranceData* override = GetEntranceData(entrance.override);
 
