@@ -28,7 +28,7 @@ _In the example above, interiors and grottos are randomized and mixed, overworld
 <br>
 
 ## How does it work?
-* [Download the latest release of OEV AutoLinker](https://github.com/reezic/OEV-AutoLinker/releases/tag/1.2)
+* [Download the latest release of OEV AutoLinker](https://github.com/reezic/OEV-AutoLinker/releases/tag/1.3)
   
 * [Download Obsidian](https://obsidian.md/)
 
@@ -42,7 +42,6 @@ _In the example above, interiors and grottos are randomized and mixed, overworld
 
 #### _Notes_
 
-_As of right now, decoupled entrances are not supported._<br>
 _Saves from other builds of SoH will not work with the AutoLinker functionality._
 
 <br>
