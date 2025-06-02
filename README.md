@@ -15,7 +15,7 @@ Official releases can be found at [SoH's GitHub](https://github.com/HarbourMaste
   <tr>
     <td colspan="2">
       <p align="center">
-        <img src="https://github.com/user-attachments/assets/ee416ccb-8728-4a2a-97bc-3badffd67a4d" width="500">
+        <img src="https://github.com/user-attachments/assets/ee416ccb-8728-4a2a-97bc-3badffd67a4d" width="400">
       </p>
     </td>
   </tr>
