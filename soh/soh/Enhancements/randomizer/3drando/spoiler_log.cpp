@@ -251,6 +251,24 @@ static void WriteShuffledEntrances() {
     }
 }
 
+// Include unshuffled entrances to the entrance section of the spoiler log
+static void WriteUnShuffledEntrances() {
+    auto entranceOverrides = Rando::Context::GetInstance()->GetEntranceShuffler()->entranceOverrides;
+    for (EntranceOverride entrance : entranceOverrides) {
+        if (entrance.index == entrance.override) {
+            json entranceJson = json::object({
+                { "type", entrance.type },
+                { "index", entrance.index },
+                { "destination", entrance.destination },
+                { "override", entrance.override },
+                { "overrideDestination", entrance.overrideDestination },
+            });
+
+            jsonData["entrances"].push_back(entranceJson);
+        }
+    }
+}
+
 Rando::ItemLocation* GetItemLocation(RandomizerGet item) {
     auto ctx = Rando::Context::GetInstance();
     return ctx->GetItemLocation(FilterFromPool(ctx->allLocations, [item, ctx](const RandomizerCheck loc) {
@@ -352,6 +370,7 @@ const char* SpoilerLog_Write() {
 
     ctx->WriteHintJson(jsonData);
     WriteShuffledEntrances();
+    WriteUnShuffledEntrances();
     WriteAllLocations();
 
     if (!std::filesystem::exists(Ship::Context::GetPathRelativeToAppDirectory("Randomizer"))) {
