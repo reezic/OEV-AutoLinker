@@ -7,13 +7,17 @@
 #include "randomizer/randomizer_entrance_tracker.h"
 #include "game-interactor/GameInteractor_Hooks.h"
 
+#include "randomizer/location_access.h"
+
 // Hook constants
 #define CVAR_OEV_AUTOLINKER_NAME CVAR_ENHANCEMENT("OEVAutoLinker")
 #define CVAR_OEV_AUTOLINKER_CONDITION true
 
-EntranceOverride linkedEntrances[ENTRANCE_OVERRIDES_MAX_COUNT] = { 0 };
+std::vector<u32> linkedEntranceIndexes;
 
 int32_t fileNumber = NULL;
+
+extern "C" SaveContext gSaveContext;
 
 // Struct for Obsidian template mappings
 struct OEVEntranceData {
@@ -314,7 +318,7 @@ const OEVEntranceData oevEntranceData[] = {
     // Market
     { "Market Entrance South Exit",       "#MarketEntrance",        "color_HyruleMarket", "Hyrule Market" },
     { "Market Entrance North Exit",       "#MarketEntrance",        "color_HyruleMarket", "Hyrule Market" },
-    { "MK Entrance Guard House Entry",    "#HyruleMarket",          "color_HyruleMarket", "Hyrule Market" },
+    { "MK Entrance Guard House Entry",    "#MarketEntrance",        "color_HyruleMarket", "Hyrule Market" },
     { "Market South Exit",                "#HyruleMarket",          "color_HyruleMarket", "Hyrule Market" },
     { "Market Castle Exit",               "#HyruleMarket",          "color_HyruleMarket", "Hyrule Market" },
     { "Market Temple Exit",               "#HyruleMarket",          "color_HyruleMarket", "Hyrule Market" },
@@ -435,64 +439,104 @@ void CheckForUnlinkedEntrances() {
         return;
     }
 
-    // Get the entrance shuffler context
-    auto entranceCtx = Rando::Context::GetInstance()->GetEntranceShuffler();
+    // Get the current default entrance
+    bool foundOverride = false;
+    bool isOneWay = false;
+    u32 currentEntranceIndex = gSaveContext.entranceIndex;
 
-    // Loop the randomizer's entire entrance pool.
-    // If the entrance has been dscovered but not linked, create a markdown file
-    // in the save's OEV folder and add it to the linkedEntrances array
-    for (size_t i = 0; i < ENTRANCE_OVERRIDES_MAX_COUNT; i++) {
-        // Get entrance from the randomizer's entrance pool
-        EntranceOverride entrance = entranceCtx->entranceOverrides[i];
-
-        // If not discovered, skip this loop iteration
-        if (!IsEntranceDiscovered(entrance.index)) {
-            continue;
+    // Check if already linked
+    bool alreadyLinked = false;
+    for (u32 linkedEntranceIndex : linkedEntranceIndexes) {
+        if (currentEntranceIndex == linkedEntranceIndex) {
+            alreadyLinked = true;
+            break;
         }
+    }
 
-        // Check if one or the other side of the entrance has already been linked
-        bool alreadyLinked = false;
-        u16 randFromIndex = entrance.index;
-        u16 randToIndex = entrance.override;
+    // If already linked, skip
+    if (alreadyLinked) {
+        return;
+    }
 
-        for (EntranceOverride linkedEntrance : linkedEntrances) {
-            u16 linkedFromIndex = linkedEntrance.index;
-            u16 linkedToIndex = linkedEntrance.override;
+    std::string fromName;
+    std::string toName;
+    const EntranceData* entranceData = GetEntranceData(currentEntranceIndex);
+    
+    // Check if matches a grotto entry
+    if (entranceData == nullptr) {
+        u16 currentGrottoId = GetCurrentGrottoId();
+        if (currentGrottoId) {
+            currentEntranceIndex = currentGrottoId + 0x0700;
+            entranceData = GetEntranceData(currentEntranceIndex);
+        }
+    }
 
-            if ((randFromIndex == linkedToIndex && randToIndex == linkedFromIndex) ||
-                (randFromIndex == linkedFromIndex && randToIndex == linkedToIndex)) {
-                alreadyLinked = true;
+    // Check if matches a grotto exit
+    if (entranceData == nullptr) {
+        u16 currentGrottoId = GetCurrentGrottoId();
+        if (currentGrottoId) {
+            currentEntranceIndex = currentGrottoId + 0x0800;
+            entranceData = GetEntranceData(currentEntranceIndex);
+        }
+    }
+
+    // Set from/to
+    if (entranceData != nullptr) {
+        fromName = entranceData->source;
+        toName = entranceData->destination;
+
+        if (entranceData->reverseIndex == -1) {
+            isOneWay = true;
+        }
+    }
+
+    // Check if the current entrance has been shuffled (override matching gets priority)
+    auto entranceCtx = Rando::Context::GetInstance()->GetEntranceShuffler();
+    for (EntranceOverride entrance : entranceCtx->entranceOverrides) {
+        if (entrance.override == currentEntranceIndex) {
+            fromName = GetEntranceData(entrance.index)->source;
+            toName = GetEntranceData(entrance.override)->destination;
+            foundOverride = true;
+            
+            if (entrance.destination == -1) {
+                isOneWay = true;
+            };
+            break;
+        }
+    }
+
+    // If no override was found, check the entrance overrides
+    if (!foundOverride) {
+        auto entranceCtx = Rando::Context::GetInstance()->GetEntranceShuffler();
+        for (EntranceOverride entrance : entranceCtx->entranceOverrides) {
+            if (entrance.index == currentEntranceIndex) {
+                fromName = GetEntranceData(entrance.index)->source;
+                toName = GetEntranceData(entrance.override)->destination;
+
+                if (entrance.destination == -1) {
+                    isOneWay = true;
+                };
                 break;
             }
         }
-
-        // If entrance has already been linked, skip this loop iteration
-        if (alreadyLinked) {
-            continue;
-        }
-
-        // Get the source and destination names from the randomizer's entrance data
-        std::string fromName = GetEntranceData(entrance.index)->source;
-        std::string toName = GetEntranceData(entrance.override)->destination;
-        bool isOneWay = GetEntranceData(entrance.override)->reverseIndex == -1;
-
-        // Special case
-        if (toName == "Temple of Time") {
-            toName = "Temple of Time Warp Pad";
-        }
-
-        // Find the matching markdown metadata mapping in oevEntranceData
-        OEVEntranceData fromOEVData = oevEntranceSearch(fromName);
-        OEVEntranceData toOEVData = oevEntranceSearch(toName);
-
-        // Link the entrance
-        LinkEntrances(fileNumber, fromName, toName, isOneWay);
-
-        // Add the entrance to linkedEntrances
-        linkedEntrances[i] = entrance;
-
-        std::cout << "[OEV AutoLinker] Linked new entrance: " << fromName << " - " << toName << std::endl;
     }
+
+    // Special case
+    if (toName == "Temple of Time") {
+        toName = "Temple of Time Warp Pad";
+    }
+
+    // Find the matching markdown metadata mapping in oevEntranceData
+    OEVEntranceData fromOEVData = oevEntranceSearch(fromName);
+    OEVEntranceData toOEVData = oevEntranceSearch(toName);
+
+    // Link the entrance
+    LinkEntrances(fileNumber, fromName, toName, isOneWay);
+
+    // Add the entrance to linkedEntrances
+    linkedEntranceIndexes.push_back(currentEntranceIndex);
+
+    std::cout << "[OEV AutoLinker] Linked new entrance: " << fromName << " - " << toName << std::endl;
 }
 
 // On scene initialization, check if any entrances that
@@ -514,17 +558,17 @@ void InitializeEntranceData(int32_t fileNum) {
     fileNumber = fileNum + 1;
 
     // Check for discovered entrances that are not linked, and link them
-    CheckForUnlinkedEntrances();
+    //CheckForUnlinkedEntrances();
 
-    std::cout << std::endl << "[OEV AutoLinker] Game " << fileNum << " loaded" << std::endl;
+    std::cout << std::endl << "[OEV AutoLinker] Game " << fileNumber << " loaded" << std::endl;
     std::cout << std::endl;
 }
 
 // On save unload
 void ClearEntranceData(int32_t fileNum) {
     // Clear linkedEntrances
-    std::fill(std::begin(linkedEntrances), std::end(linkedEntrances), EntranceOverride{});
-
+    linkedEntranceIndexes.clear();
+    
     // Clear file number
     fileNumber = NULL;
 }
