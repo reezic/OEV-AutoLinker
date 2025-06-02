@@ -10,20 +10,31 @@ Official releases can be found at [SoH's GitHub](https://github.com/HarbourMaste
 
 <table>
   <tr>
-    <th>No randomization</th>
+    <th colspan="2">No randomization</th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <p align="center">
+        <img src="https://github.com/user-attachments/assets/ee416ccb-8728-4a2a-97bc-3badffd67a4d" width="500">
+      </p>
+    </td>
+  </tr>
+  <tr>
     <th>Randomized</th>
+    <th>Randomized (decoupled)</th>
   </tr>
   <tr>
     <td>
-      <img src="https://github.com/user-attachments/assets/ee416ccb-8728-4a2a-97bc-3badffd67a4d" width="600">
+      <img src="https://github.com/user-attachments/assets/20837f85-560a-4481-a62b-e2c79dc40f35" width="600">
     </td>
     <td>
-      <img src="https://github.com/user-attachments/assets/20837f85-560a-4481-a62b-e2c79dc40f35" width="600">
+      <img src="https://github.com/user-attachments/assets/774b307f-a21e-41ae-9250-a91c8c18f970" width="600">
     </td>
   </tr>
 </table>
 
-_In the example above, interiors and grottos are randomized and mixed, overworld spawns are also randomized._
+
+_Sample maps with various randomizer settings._
 
 <br>
 
