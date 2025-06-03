@@ -2,7 +2,7 @@
 #include <iostream>
 #include <filesystem>
 #include "soh/OTRGlobals.h"
-#include "randomizer/context.h"
+//#include "randomizer/context.h"
 #include "randomizer/entrance.h"
 #include "randomizer/randomizer_entrance_tracker.h"
 #include "game-interactor/GameInteractor_Hooks.h"
@@ -11,7 +11,12 @@
 #define CVAR_OEV_AUTOLINKER_NAME CVAR_ENHANCEMENT("OEVAutoLinker")
 #define CVAR_OEV_AUTOLINKER_CONDITION true
 
-EntranceOverride linkedEntrances[ENTRANCE_OVERRIDES_MAX_COUNT] = { 0 };
+struct LinkedEntrance {
+    u16 fromIndex;
+    u16 toIndex;
+};
+
+std::vector<LinkedEntrance> linkedEntrances;
 
 int32_t fileNumber = NULL;
 
@@ -436,32 +441,41 @@ void CheckForUnlinkedEntrances() {
         return;
     }
 
-    // Get the entrance shuffler context
-    auto entranceCtx = Rando::Context::GetInstance()->GetEntranceShuffler();
+    // Get the randomizer's entrance pool
+    const std::span<const EntranceData> entranceData = GetAllEntranceData();
 
-    // Loop the randomizer's entire entrance pool.
+    // Get the entrance overrides
+    auto entranceOverrides = Rando::Context::GetInstance()->GetEntranceShuffler()->entranceOverrides;
+
+    // Loop the randomizer's entire entrance pool, using overriden entrances where applicable
     // If the entrance has been dscovered but not linked, create a markdown file
     // in the save's OEV folder and add it to the linkedEntrances array
-    for (size_t i = 0; i < ENTRANCE_OVERRIDES_MAX_COUNT; i++) {
-        // Get entrance from the randomizer's entrance pool
-        EntranceOverride entrance = entranceCtx->entranceOverrides[i];
+    for (const EntranceData entrance : entranceData) {
 
         // If not discovered, skip this loop iteration
         if (!IsEntranceDiscovered(entrance.index)) {
             continue;
         }
 
+        u16 fromIndex = entrance.index;
+        u16 toIndex = entrance.reverseIndex;
+        u16 destinationIndex;
+
+        // Use the entrance coverride if it exists
+        EntranceOverride entranceOverride;
+        for (EntranceOverride override : entranceOverrides) {
+            if (entrance.index == override.index) {
+                toIndex = override.override;
+                entranceOverride = override;
+                break;
+            }
+        }
+
         // Check if one or the other side of the entrance has already been linked
         bool alreadyLinked = false;
-        u16 randFromIndex = entrance.index;
-        u16 randToIndex = entrance.override;
-
-        for (EntranceOverride linkedEntrance : linkedEntrances) {
-            u16 linkedFromIndex = linkedEntrance.index;
-            u16 linkedToIndex = linkedEntrance.override;
-
-            if ((randFromIndex == linkedToIndex && randToIndex == linkedFromIndex) ||
-                (randFromIndex == linkedFromIndex && randToIndex == linkedToIndex)) {
+        for (LinkedEntrance linkedEntrance : linkedEntrances) {
+            if ((fromIndex == linkedEntrance.toIndex && toIndex == linkedEntrance.fromIndex) ||
+                (fromIndex == linkedEntrance.fromIndex && toIndex == linkedEntrance.toIndex)) {
                 alreadyLinked = true;
                 break;
             }
@@ -473,9 +487,10 @@ void CheckForUnlinkedEntrances() {
         }
 
         // Get the source and destination names from the randomizer's entrance data
-        std::string fromName = GetEntranceData(entrance.index)->source;
-        std::string toName = GetEntranceData(entrance.override)->destination;
-        bool isOneWay = GetEntranceData(entrance.override)->reverseIndex == -1 || entrance.destination == -1;
+        const EntranceData* toEntrance = GetEntranceData(toIndex);
+        std::string fromName = entrance.source;
+        std::string toName = toEntrance->destination;
+        bool isOneWay = toEntrance->reverseIndex == -1 || (entranceOverride.destination == -1);
 
         // Special case
         if (toName == "Temple of Time") {
@@ -490,7 +505,8 @@ void CheckForUnlinkedEntrances() {
         LinkEntrances(fileNumber, fromName, toName, isOneWay);
 
         // Add the entrance to linkedEntrances
-        linkedEntrances[i] = entrance;
+        LinkedEntrance linkedEntrance = { fromIndex, toIndex };
+        linkedEntrances.push_back(linkedEntrance);
 
         std::cout << "[OEV AutoLinker] Linked new entrance: " << fromName << " - " << toName << std::endl;
     }
@@ -524,7 +540,7 @@ void InitializeEntranceData(int32_t fileNum) {
 // On save unload
 void ClearEntranceData(int32_t fileNum) {
     // Clear linkedEntrances
-    std::fill(std::begin(linkedEntrances), std::end(linkedEntrances), EntranceOverride{});
+    linkedEntrances.clear();
 
     // Clear file number
     fileNumber = NULL;

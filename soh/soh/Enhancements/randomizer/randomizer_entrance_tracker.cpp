@@ -449,6 +449,11 @@ const EntranceData* GetEntranceData(s16 index) {
     return nullptr;
 }
 
+// Modify the return statement to create a span from the array
+const std::span<const EntranceData> GetAllEntranceData() {
+    return std::span<const EntranceData>(entranceData, std::size(entranceData));
+}
+
 void EntranceTracker_LoadFromPreset(nlohmann::json info) {
     presetLoaded = true;
     presetPos = { info["pos"]["x"], info["pos"]["y"] };
@@ -856,10 +861,6 @@ void EntranceTrackerWindow::DrawElement() {
             size_t trueIdx = entranceIdx + startIndex;
 
             EntranceOverride entrance = entranceList[trueIdx];
-
-            if (entrance.index == entrance.override) { // Do not show unshuffled entrances
-                continue;
-            }
 
             const EntranceData* original = GetEntranceData(entrance.index);
             const EntranceData* override = GetEntranceData(entrance.override);
