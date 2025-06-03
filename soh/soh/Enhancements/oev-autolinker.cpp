@@ -457,15 +457,18 @@ void CheckForUnlinkedEntrances() {
             continue;
         }
 
-        u16 fromIndex = entrance.index;
-        u16 toIndex = entrance.reverseIndex;
-        u16 destinationIndex;
+        u16 fromIndex = entrance.reverseIndex;
+        std::string fromName = entrance.source;
+
+        u16 toIndex = entrance.index;
+        std::string toName = entrance.destination;
+        EntranceOverride entranceOverride{ -1 };
 
         // Use the entrance coverride if it exists
-        EntranceOverride entranceOverride;
         for (EntranceOverride override : entranceOverrides) {
             if (entrance.index == override.index) {
                 toIndex = override.override;
+                toName = GetEntranceData(toIndex)->destination;
                 entranceOverride = override;
                 break;
             }
@@ -487,10 +490,12 @@ void CheckForUnlinkedEntrances() {
         }
 
         // Get the source and destination names from the randomizer's entrance data
-        const EntranceData* toEntrance = GetEntranceData(toIndex);
-        std::string fromName = entrance.source;
-        std::string toName = toEntrance->destination;
-        bool isOneWay = toEntrance->reverseIndex == -1 || (entranceOverride.destination == -1);
+        
+        bool isOneWay = false;
+        
+        if (GetEntranceData(toIndex)->reverseIndex == -1 || entranceOverride.destination == -1) {
+            isOneWay = true;
+        };
 
         // Special case
         if (toName == "Temple of Time") {
