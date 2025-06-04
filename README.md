@@ -51,10 +51,6 @@ _Sample maps with various randomizer settings._
 
 * Watch as Obsidian's graph view automatically creates a map of the game's world as you explore it!
 
-#### _Notes_
-
-_Saves from other builds of SoH will not work with the AutoLinker functionality._
-
 <br>
 
 ## Recommended plugins
