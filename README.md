@@ -62,7 +62,13 @@ I highly recommend these plugins for Obsidian to make the experience better:
 
 <br>
 
-[Sanqui's "Obsidian Persistent Graph Plugin"](https://github.com/libasoles/graph-view-text-size) <br>
+[jerrywcy's "Obsidian Path Finder Plugin"](https://github.com/jerrywcy/obsidian-path-finder)<br>
+Lets you quickly search for the shortest path from one node to another.<br>
+Press CTRL+P, then search for Path Finder and input your source and destination names.
+
+<br>
+
+[Sanqui's "Obsidian Persistent Graph Plugin"](https://github.com/libasoles/graph-view-text-size)<br>
 This plugin lets you save node positions in the graph view.
 
 To save your node layout, press CRTL+P, then search for "save" and click "Persistent Graph: Save graph node positions".<br>
