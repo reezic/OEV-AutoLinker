@@ -35,12 +35,12 @@ const OEVEntranceData oevEntranceData[] = {
     // Other
     { "Child Spawn",        "", "color_Spawn",       "Spawn" },
     { "Adult Spawn",        "", "color_Spawn",       "Spawn" },
-    { "Minuet of Forest",   "", "color_OcarinaSong", "Ocarina Songs" },
-    { "Bolero of Fire",     "", "color_OcarinaSong", "Ocarina Songs" },
-    { "Serenade of Water",  "", "color_OcarinaSong", "Ocarina Songs" },
-    { "Requiem of Spirit",  "", "color_OcarinaSong", "Ocarina Songs" },
-    { "Nocturne of Shadow", "", "color_OcarinaSong", "Ocarina Songs" },
-    { "Prelude of Light",   "", "color_OcarinaSong", "Ocarina Songs" },
+    { "Minuet of Forest",   "", "color_OcarinaSong", "Sacred Forest Meadow" },
+    { "Bolero of Fire",     "", "color_OcarinaSong", "Death Mountain Crater" },
+    { "Serenade of Water",  "", "color_OcarinaSong", "Lake Hylia" },
+    { "Requiem of Spirit",  "", "color_OcarinaSong", "Desert Colossus" },
+    { "Nocturne of Shadow", "", "color_OcarinaSong", "Graveyard" },
+    { "Prelude of Light",   "", "color_OcarinaSong", "Hyrule Market" },
 
     // Kokiri Forest
     { "Kokiri Forest Lower Exit",   "Kokiri Forest", "color_KokiriForest", "Kokiri Forest" },
@@ -51,7 +51,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "KF House of Twins Entry",    "Kokiri Forest", "color_KokiriForest", "Kokiri Forest" },
     { "KF Know-It-All House Entry", "Kokiri Forest", "color_KokiriForest", "Kokiri Forest" },
     { "KF Shop Entry",              "Kokiri Forest", "color_KokiriForest", "Kokiri Forest" },
-    { "KF Storms Grotto Entry",     "Kokiri Forest", "color_Grotto",       "Kokiri Forest" },
+    { "KF Storms Grotto Entry",     "Kokiri Forest", "color_KokiriForest",       "Kokiri Forest" },
     { "KF Outside Deku Tree",       "Kokiri Forest", "color_KokiriForest", "Kokiri Forest" },
     { "Link's House",               "",              "color_KokiriForest", "Kokiri Forest" },
     { "Mido's House",               "",              "color_KokiriForest", "Kokiri Forest" },
@@ -62,8 +62,8 @@ const OEVEntranceData oevEntranceData[] = {
     { "KF Storms Grotto",           "",              "color_Grotto",       "Kokiri Forest" },
     { "Deku Tree Entrance",         "Deku Tree",     "color_DekuTree",     "Kokiri Forest" },
     { "Deku Tree Boss Door",        "Deku Tree",     "color_DekuTree",     "Kokiri Forest" },
-    { "Gohma",                      "Deku Tree",     "color_DekuTree",     "Kokiri Forest" },
-    { "Gohma Blue Warp",            "Deku Tree",     "color_DekuTree",     "Kokiri Forest" },
+    { "Gohma",                      "Gohma",         "color_DekuTree",     "Kokiri Forest" },
+    { "Gohma Blue Warp",            "Gohma",         "color_DekuTree",     "Kokiri Forest" },
     { "Deku Tree Blue Warp",        "Kokiri Forest", "color_KokiriForest", "Kokiri Forest" },
 
     // Lost Woods
@@ -74,27 +74,27 @@ const OEVEntranceData oevEntranceData[] = {
     { "Lost Woods Underwater Shortcut", "Lost Woods",        "color_KokiriForest", "Lost Woods" },
     { "Lost Woods North Exit",          "Lost Woods",        "color_KokiriForest", "Lost Woods" },
     { "LW Tunnel Grotto Entry",         "Lost Woods",        "color_KokiriForest", "Lost Woods" },
-    { "LW North Grotto Entry",          "Lost Woods",        "color_Grotto",       "Lost Woods" },
-    { "LW Meadow Grotto Entry",         "Lost Woods",        "color_Grotto",       "Lost Woods" },
+    { "LW North Grotto Entry",          "Lost Woods",        "color_KokiriForest",       "Lost Woods" },
+    { "LW Meadow Grotto Entry",         "Lost Woods",        "color_KokiriForest",       "Lost Woods" },
     { "LW Tunnel Grotto",               "",                  "color_Grotto",       "Lost Woods" },
     { "LW Scrubs Grotto",               "",                  "color_Grotto",       "Lost Woods" },
     { "Deku Theater",                   "",                  "color_Grotto",       "Lost Woods" },
 
     // Sacred Forest Meadow
     { "Sacred Forest Meadow South Exit",            "Sacred Forest Meadow", "color_KokiriForest", "Sacred Forest Meadow" },
-    { "SFM Wolfos Grotto Entry",                    "Sacred Forest Meadow", "color_Grotto",       "Sacred Forest Meadow" },
-    { "SFM Fairy Grotto Entry",                     "Sacred Forest Meadow", "color_Grotto",       "Sacred Forest Meadow" },
-    { "SFM Storms Grotto Entry",                    "Sacred Forest Meadow", "color_Grotto",       "Sacred Forest Meadow" },
+    { "SFM Wolfos Grotto Entry",                    "Sacred Forest Meadow", "color_KokiriForest",       "Sacred Forest Meadow" },
+    { "SFM Fairy Grotto Entry",                     "Sacred Forest Meadow", "color_KokiriForest",       "Sacred Forest Meadow" },
+    { "SFM Storms Grotto Entry",                    "Sacred Forest Meadow", "color_KokiriForest",       "Sacred Forest Meadow" },
     { "Sacred Forest Meadow Outside Forest Temple", "Sacred Forest Meadow", "color_KokiriForest", "Sacred Forest Meadow" },
     { "SFM Wolfos Grotto",                          "",                     "color_Grotto",       "Sacred Forest Meadow" },
     { "SFM Fairy Grotto",                           "",                     "color_Grotto",       "Sacred Forest Meadow" },
     { "SFM Deku Scrub Grotto",                      "",                     "color_KokiriForest", "Sacred Forest Meadow" },
     { "Forest Temple Entrance",                     "Forest Temple",        "color_ForestTemple", "Sacred Forest Meadow" },
     { "Forest Temple Boss Door",                    "Forest Temple",        "color_ForestTemple", "Sacred Forest Meadow" },
-    { "Phantom Ganon",                              "Forest Temple",        "color_ForestTemple", "Sacred Forest Meadow" },
-    { "Phantom Ganon Blue Warp",                    "Forest Temple",        "color_ForestTemple", "Sacred Forest Meadow" },
+    { "Phantom Ganon",                              "Phantom Ganon",        "color_ForestTemple", "Sacred Forest Meadow" },
+    { "Phantom Ganon Blue Warp",                    "Phantom Ganon",        "color_ForestTemple", "Sacred Forest Meadow" },
     { "Forest Temple Blue Warp",                    "Sacred Forest Meadow", "color_KokiriForest", "Sacred Forest Meadow" },
-    { "SFM Warp Pad",                               "Kokiri Forest",        "color_KokiriForest", "Ocarina Songs" },
+    { "SFM Warp Pad",                               "Sacred Forest Meadow", "color_KokiriForest", "Ocarina Songs" },
 
     // Kakariko Village
     { "Kakariko Front Gate",            "Kakariko Village",          "color_KakarikoVillage", "Kakariko Village" },
@@ -110,8 +110,8 @@ const OEVEntranceData oevEntranceData[] = {
     { "Kak Bazaar Entry",               "Kakariko Village",          "color_KakarikoVillage", "Kakariko Village" },
     { "Kak Potion Shop Front Entry",    "Kakariko Village",          "color_KakarikoVillage", "Kakariko Village" },
     { "Kak Potion Shop Back Entry",     "Kakariko Village",          "color_KakarikoVillage", "Kakariko Village" },
-    { "Kak Open Grotto Entry",          "Kakariko Village",          "color_Grotto",          "Kakariko Village" },
-    { "Kak Center Grotto Entry",        "Kakariko Village",          "color_Grotto",          "Kakariko Village" },
+    { "Kak Open Grotto Entry",          "Kakariko Village",          "color_KakarikoVillage",          "Kakariko Village" },
+    { "Kak Center Grotto Entry",        "Kakariko Village",          "color_KakarikoVillage",          "Kakariko Village" },
     { "Kakariko Outside the Well",      "Kakariko Village",          "color_KakarikoVillage", "Kakariko Village" },
     { "Kakariko Village Owl Drop",      "Kakariko Village",          "color_KakarikoVillage", "Kakariko Village" },
     { "Carpenter Boss House",           "",                          "color_KakarikoVillage", "Kakariko Village" },
@@ -131,10 +131,10 @@ const OEVEntranceData oevEntranceData[] = {
     // The Graveyard
     { "Graveyard Entrance",           "Graveyard",                 "color_KakarikoVillage", "Graveyard" },
     { "GY Dampe's Hut Entry",         "Graveyard",                 "color_KakarikoVillage", "Graveyard" },
-    { "GY Near-Hut Grave Entry",      "Graveyard",                 "color_Grotto",          "Graveyard" },
-    { "GY Near-Tomb Grave Entry",     "Graveyard",                 "color_Grotto",          "Graveyard" },
-    { "GY Royal Family's Tomb Entry", "Graveyard",                 "color_Grotto",          "Graveyard" },
-    { "GY Near-Ledge Grave Entry",    "Graveyard",                 "color_Grotto",          "Graveyard" },
+    { "GY Near-Hut Grave Entry",      "Graveyard",                 "color_KakarikoVillage",          "Graveyard" },
+    { "GY Near-Tomb Grave Entry",     "Graveyard",                 "color_KakarikoVillage",          "Graveyard" },
+    { "GY Royal Family's Tomb Entry", "Graveyard",                 "color_KakarikoVillage",          "Graveyard" },
+    { "GY Near-Ledge Grave Entry",    "Graveyard",                 "color_KakarikoVillage",          "Graveyard" },
     { "Graveyard Outside Temple",     "Graveyard",                 "color_KakarikoVillage", "Graveyard" },
     { "Dampe's Hut",                  "",                          "color_KakarikoVillage", "Graveyard" },
     { "Shield Grave",                 "",                          "color_Grotto",          "Graveyard" },
@@ -143,8 +143,8 @@ const OEVEntranceData oevEntranceData[] = {
     { "Dampe's Grave",                "Windmill and Dampes Grave", "color_Grotto",          "Graveyard" },
     { "Shadow Temple Entrance",       "Shadow Temple",             "color_ShadowTemple",    "Graveyard" },
     { "Shadow Temple Boss Door",      "Shadow Temple",             "color_ShadowTemple",    "Graveyard" },
-    { "Bongo-Bongo",                  "Shadow Temple",             "color_ShadowTemple",    "Graveyard" },
-    { "Bongo-Bongo Blue Warp",        "Shadow Temple",             "color_ShadowTemple",    "Graveyard" },
+    { "Bongo-Bongo",                  "Bongo Bongo",               "color_ShadowTemple",    "Graveyard" },
+    { "Bongo-Bongo Blue Warp",        "Bongo Bongo",               "color_ShadowTemple",    "Graveyard" },
     { "Shadow Temple Blue Warp",      "Graveyard",                 "color_KakarikoVillage", "Graveyard" },
     { "Graveyard Warp Pad",           "Graveyard",                 "color_KakarikoVillage", "Ocarina Songs" },
 
@@ -153,33 +153,33 @@ const OEVEntranceData oevEntranceData[] = {
     { "Death Mountain Trail Middle Exit",              "Death Mountain Trail", "color_DeathMountain",  "Death Mountain Trail" },
     { "Death Mountain Trail Bottom Exit",              "Death Mountain Trail", "color_DeathMountain",  "Death Mountain Trail" },
     { "Death Mountain Trail Top Exit",                 "Death Mountain Trail", "color_DeathMountain",  "Death Mountain Trail" },
-    { "DMT Great Fairy Entry",                         "Death Mountain Trail", "color_Grotto",         "Death Mountain Trail" },
-    { "DMT Rock Circle Grotto Entry",                  "Death Mountain Trail", "color_Grotto",         "Death Mountain Trail" },
-    { "DMT Boulder Grotto Entry",                      "Death Mountain Trail", "color_Grotto",         "Death Mountain Trail" },
+    { "DMT Great Fairy Entry",                         "Death Mountain Trail", "color_DeathMountain",         "Death Mountain Trail" },
+    { "DMT Rock Circle Grotto Entry",                  "Death Mountain Trail", "color_DeathMountain",         "Death Mountain Trail" },
+    { "DMT Boulder Grotto Entry",                      "Death Mountain Trail", "color_DeathMountain",         "Death Mountain Trail" },
     { "Death Mountain Trail Outside Dodongo's Cavern", "Death Mountain Trail", "color_DeathMountain",  "Death Mountain Trail" },
     { "DMT Great Fairy Fountain",                      "",                     "color_Grotto",         "Death Mountain Trail" },
     { "DMT Storms Grotto",                             "",                     "color_Grotto",         "Death Mountain Trail" },
     { "DMT Cow Grotto",                                "",                     "color_Grotto",         "Death Mountain Trail" },
     { "Dodongo's Cavern Entrance",                     "Dodongos Cavern",      "color_DodongosCavern", "Death Mountain Trail" },
     { "Dodongo's Cavern Boss Door",                    "Dodongos Cavern",      "color_DodongosCavern", "Death Mountain Trail" },
-    { "King Dodongo",                                  "Dodongos Cavern",      "color_DodongosCavern", "Death Mountain Trail" },
-    { "King Dodongo Blue Warp",                        "Dodongos Cavern",      "color_DodongosCavern", "Death Mountain Trail" },
+    { "King Dodongo",                                  "King Dodongo",         "color_DodongosCavern", "Death Mountain Trail" },
+    { "King Dodongo Blue Warp",                        "King Dodongo",         "color_DodongosCavern", "Death Mountain Trail" },
     { "Dodongo's Cavern Blue Warp",                    "Death Mountain Trail", "color_DeathMountain",  "Death Mountain Trail" },
 
     // Death Mountain Crater
     { "Death Mountain Crater Bridge Exit",    "Death Mountain Crater", "color_DeathMountain", "Death Mountain Crater" },
     { "Death Mountain Crater Upper Exit",     "Death Mountain Crater", "color_DeathMountain", "Death Mountain Crater" },
-    { "DMC Great Fairy Entry",                "Death Mountain Crater", "color_Grotto",        "Death Mountain Crater" },
-    { "DMC Upper Grotto Entry",               "Death Mountain Crater", "color_Grotto",        "Death Mountain Crater" },
-    { "DMC Hammer Grotto Entry",              "Death Mountain Crater", "color_Grotto",        "Death Mountain Crater" },
+    { "DMC Great Fairy Entry",                "Death Mountain Crater", "color_DeathMountain",        "Death Mountain Crater" },
+    { "DMC Upper Grotto Entry",               "Death Mountain Crater", "color_DeathMountain",        "Death Mountain Crater" },
+    { "DMC Hammer Grotto Entry",              "Death Mountain Crater", "color_DeathMountain",        "Death Mountain Crater" },
     { "Death Mountain Crater Outside Temple", "Death Mountain Crater", "color_DeathMountain", "Death Mountain Crater" },
-    { "DMC Great Fairy Fountain",             "",                     "color_Grotto",        "Death Mountain Crater" },
-    { "DMC Upper Grotto",                     "",                     "color_Grotto",        "Death Mountain Crater" },
-    { "DMC Scrubs Grotto",                    "",                     "color_Grotto",        "Death Mountain Crater" },
-    { "Fire Temple Entrance",                 "Fire Temple",          "color_FireTemple",    "Death Mountain Crater" },
-    { "Fire Temple Boss Door",                "Fire Temple",          "color_FireTemple",    "Death Mountain Crater" },
-    { "Volvagia",                             "Fire Temple",            "color_FireTemple",    "Death Mountain Crater" },
-    { "Volvagia Blue Warp",                   "Fire Temple",            "color_FireTemple",    "Death Mountain Crater" },
+    { "DMC Great Fairy Fountain",             "",                      "color_Grotto",        "Death Mountain Crater" },
+    { "DMC Upper Grotto",                     "",                      "color_Grotto",        "Death Mountain Crater" },
+    { "DMC Scrubs Grotto",                    "",                      "color_Grotto",        "Death Mountain Crater" },
+    { "Fire Temple Entrance",                 "Fire Temple",           "color_FireTemple",    "Death Mountain Crater" },
+    { "Fire Temple Boss Door",                "Fire Temple",           "color_FireTemple",    "Death Mountain Crater" },
+    { "Volvagia",                             "Volvagia",              "color_FireTemple",    "Death Mountain Crater" },
+    { "Volvagia Blue Warp",                   "Volvagia",              "color_FireTemple",    "Death Mountain Crater" },
     { "Fire Temple Blue Warp",                "Death Mountain Crater", "color_DeathMountain", "Death Mountain Crater" },
     { "DMC Warp Pad",                         "Death Mountain Crater", "color_DeathMountain", "Ocarina Songs" },
 
@@ -188,40 +188,40 @@ const OEVEntranceData oevEntranceData[] = {
     { "Goron City Darunia's Room Backdoor", "Goron City", "color_GoronCity", "Goron City" },
     { "Goron City Tunnel Shortcut",         "Goron City", "color_GoronCity", "Goron City" },
     { "GC Shop Entry",                      "Goron City", "color_GoronCity", "Goron City" },
-    { "GC Lava Grotto Entry",               "Goron City", "color_Grotto",    "Goron City" },
+    { "GC Lava Grotto Entry",               "Goron City", "color_GoronCity",    "Goron City" },
     { "Goron Shop",                         "",           "color_GoronCity", "Goron City" },
     { "GC Scrubs Grotto",                   "",           "color_Grotto",    "Goron City" },
 
     // Zora's River
-    { "Zora's River Lower Exit",          "Zoras River", "color_ZorasRiver", "Zora's River" },
-    { "Zora's River Underwater Shortcut", "Zoras River", "color_ZorasRiver", "Zora's River" },
-    { "Zora's River Waterfall Exit",      "Zoras River", "color_ZorasRiver", "Zora's River" },
-    { "ZR Rock Circle Grotto Entry",      "Zoras River", "color_Grotto",     "Zora's River" },
-    { "ZR Raised Boulder Grotto Entry",   "Zoras River", "color_Grotto",     "Zora's River" },
-    { "ZR Raised Open Grotto Entry",      "Zoras River", "color_Grotto",     "Zora's River" },
-    { "ZR Deku Scrub Grotto",             "",            "color_Grotto",     "Zora's River" },
-    { "ZR Fairy Grotto",                  "",            "color_Grotto",     "Zora's River" },
-    { "ZR Open Grotto",                   "",            "color_Grotto",     "Zora's River" },
+    { "Zora's River Lower Exit",          "Zora's River", "color_ZorasRiver", "Zora's River" },
+    { "Zora's River Underwater Shortcut", "Zora's River", "color_ZorasRiver", "Zora's River" },
+    { "Zora's River Waterfall Exit",      "Zora's River", "color_ZorasRiver", "Zora's River" },
+    { "ZR Rock Circle Grotto Entry",      "Zora's River", "color_ZorasRiver",     "Zora's River" },
+    { "ZR Raised Boulder Grotto Entry",   "Zora's River", "color_ZorasRiver",     "Zora's River" },
+    { "ZR Raised Open Grotto Entry",      "Zora's River", "color_ZorasRiver",     "Zora's River" },
+    { "ZR Deku Scrub Grotto",             "",             "color_Grotto",     "Zora's River" },
+    { "ZR Fairy Grotto",                  "",             "color_Grotto",     "Zora's River" },
+    { "ZR Open Grotto",                   "",             "color_Grotto",     "Zora's River" },
 
     // Zora's Domain
     { "Zora's Domain Entrance",            "Zoras Domain",   "color_ZorasDomain", "Zora's Domain" },
     { "Zora's Domain Underwater Shortcut", "Zoras Domain",   "color_ZorasDomain", "Zora's Domain" },
     { "Zora's Domain Behind King Zora",    "Zoras Domain",   "color_ZorasDomain", "Zora's Domain" },
     { "ZD Shop Entry",                     "Zoras Domain",   "color_ZorasDomain", "Zora's Domain" },
-    { "ZD Island Grotto Entry",            "Zoras Domain",   "color_Grotto",      "Zora's Domain" },
+    { "ZD Island Grotto Entry",            "Zoras Domain",   "color_ZorasDomain",      "Zora's Domain" },
     { "Zora Shop",                         "",               "color_ZorasDomain", "Zora's Domain" },
     { "ZD Fairy Grotto",                   "",               "color_Grotto",      "Zora's Domain" },
 
     // Zora's Fountain
     { "Zora's Fountain Tunnel Exit",        "Zoras Fountain", "color_ZorasFountain", "Zora's Fountain" },
-    { "ZF Great Fairy Entry",               "Zoras Fountain", "color_Grotto",        "Zora's Fountain" },
+    { "ZF Great Fairy Entry",               "Zoras Fountain", "color_ZorasFountain",        "Zora's Fountain" },
     { "Zora's Fountain Outside Jabu Jabu",  "Zoras Fountain", "color_ZorasFountain", "Zora's Fountain" },
     { "Zora's Fountain Outside Ice Cavern", "Zoras Fountain", "color_ZorasFountain", "Zora's Fountain" },
     { "ZF Great Fairy Fountain",            "",               "color_Grotto",        "Zora's Fountain" },
     { "Jabu Jabu's Belly Entrance",         "Jabu Jabu",      "color_JabuJabu",      "Zora's Fountain" },
     { "Jabu Jabu's Belly Boss Door",        "Jabu Jabu",      "color_JabuJabu",      "Zora's Fountain" },
-    { "Barinade",                           "Jabu Jabu",      "color_JabuJabu",      "Zora's Fountain" },
-    { "Barinade Blue Warp",                 "Jabu Jabu",      "color_JabuJabu",      "Zora's Fountain" },
+    { "Barinade",                           "Barinade",       "color_JabuJabu",      "Zora's Fountain" },
+    { "Barinade Blue Warp",                 "Barinade",       "color_JabuJabu",      "Zora's Fountain" },
     { "Jabu Jabu's Belly Blue Warp",        "Zoras Fountain", "color_ZorasFountain", "Zora's Fountain" },
     { "Ice Cavern Entrance",                "",               "color_IceCavern",     "Zora's Fountain" },
 
@@ -234,14 +234,14 @@ const OEVEntranceData oevEntranceData[] = {
     { "Hyrule Field Fence Exit",             "Hyrule Field", "color_HyruleField", "Hyrule Field" },
     { "Hyrule Field Rocky Path",             "Hyrule Field", "color_HyruleField", "Hyrule Field" },
     { "Hyrule Field Owl Drop",               "Hyrule Field", "color_HyruleField", "Hyrule Field" },
-    { "HF Near Market Boulder Grotto Entry", "Hyrule Field", "color_Grotto",      "Hyrule Field" },
-    { "HF Stone Bridge Tree Grotto Entry",   "Hyrule Field", "color_Grotto",      "Hyrule Field" },
-    { "HF Northwest Tree Grotto Entry",      "Hyrule Field", "color_Grotto",      "Hyrule Field" },
-    { "HF Northwest Boulder Grotto Entry",   "Hyrule Field", "color_Grotto",      "Hyrule Field" },
-    { "HF West Rock Circle Grotto Entry",    "Hyrule Field", "color_Grotto",      "Hyrule Field" },
-    { "HF South Open Grotto Entry",          "Hyrule Field", "color_Grotto",      "Hyrule Field" },
-    { "HF Fenced Grotto Entry",              "Hyrule Field", "color_Grotto",      "Hyrule Field" },
-    { "HF Southeast Boulder Grotto Entry",   "Hyrule Field", "color_Grotto",      "Hyrule Field" },
+    { "HF Near Market Boulder Grotto Entry", "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
+    { "HF Stone Bridge Tree Grotto Entry",   "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
+    { "HF Northwest Tree Grotto Entry",      "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
+    { "HF Northwest Boulder Grotto Entry",   "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
+    { "HF West Rock Circle Grotto Entry",    "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
+    { "HF South Open Grotto Entry",          "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
+    { "HF Fenced Grotto Entry",              "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
+    { "HF Southeast Boulder Grotto Entry",   "Hyrule Field", "color_HyruleField",      "Hyrule Field" },
     { "HF Near Market Boulder Grotto",       "",             "color_Grotto",      "Hyrule Field" },
     { "HF Stone Bridge Tree Grotto",         "",             "color_Grotto",      "Hyrule Field" },
     { "HF Tektite Grotto",                   "",             "color_Grotto",      "Hyrule Field" },
@@ -256,7 +256,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "LLR Talon's House Entry", "Lon Lon Ranch", "color_LonLonRanch", "Lon Lon Ranch" },
     { "LLR Stables Entry",       "Lon Lon Ranch", "color_LonLonRanch", "Lon Lon Ranch" },
     { "LLR Tower Entry",         "Lon Lon Ranch", "color_LonLonRanch", "Lon Lon Ranch" },
-    { "LLR Grotto Entry",        "Lon Lon Ranch", "color_Grotto",      "Lon Lon Ranch" },
+    { "LLR Grotto Entry",        "Lon Lon Ranch", "color_LonLonRanch",      "Lon Lon Ranch" },
     { "Talon's House",           "",              "color_LonLonRanch", "Lon Lon Ranch" },
     { "LLR Stables",             "",              "color_LonLonRanch", "Lon Lon Ranch" },
     { "LLR Tower",               "",              "color_LonLonRanch", "Lon Lon Ranch" },
@@ -268,7 +268,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Lake Hylia Underwater Shortcut", "Lake Hylia",   "color_LakeHylia",   "Lake Hylia" },
     { "LH Lab Entry",                   "Lake Hylia",   "color_LakeHylia",   "Lake Hylia" },
     { "LH Fishing Pond Entry",          "Lake Hylia",   "color_LakeHylia",   "Lake Hylia" },
-    { "LH Grave Grotto Entry",          "Lake Hylia",   "color_Grotto",      "Lake Hylia" },
+    { "LH Grave Grotto Entry",          "Lake Hylia",   "color_LakeHylia",      "Lake Hylia" },
     { "Lake Hylia Outside Temple",      "Lake Hylia",   "color_LakeHylia",   "Lake Hylia" },
     { "Lake Hylia River Exit",          "Lake Hylia",   "color_LakeHylia",   "Lake Hylia" },
     { "LH Lab",                         "",             "color_LakeHylia",   "Lake Hylia" },
@@ -276,8 +276,8 @@ const OEVEntranceData oevEntranceData[] = {
     { "LH Deku Scrub Grotto",           "",             "color_Grotto",      "Lake Hylia" },
     { "Water Temple Entrance",          "Water Temple", "color_WaterTemple", "Lake Hylia" },
     { "Water Temple Boss Door",         "Water Temple", "color_WaterTemple", "Lake Hylia" },
-    { "Morpha",                         "Water Temple", "color_WaterTemple", "Lake Hylia" },
-    { "Morpha Blue Warp",               "Water Temple", "color_WaterTemple", "Lake Hylia" },
+    { "Morpha",                         "Morpha",       "color_WaterTemple", "Lake Hylia" },
+    { "Morpha Blue Warp",               "Morpha",       "color_WaterTemple", "Lake Hylia" },
     { "Water Temple Blue Warp",         "Lake Hylia",   "color_LakeHylia",   "Lake Hylia" },
     { "Lake Hylia Warp Pad",            "Lake Hylia",   "color_LakeHylia",   "Ocarina Songs" },
 
@@ -286,8 +286,8 @@ const OEVEntranceData oevEntranceData[] = {
     { "Gerudo Valley West Exit",         "Gerudo Valley",   "color_GerudoValley",         "Gerudo Valley" },
     { "Gerudo Valley River Exit",        "Gerudo Valley",   "color_GerudoValley",         "Gerudo Valley" },
     { "GV Carpenters' Tent Entry",       "Gerudo Valley",   "color_GerudoValley",         "Gerudo Valley" },
-    { "GV Silver Rock Grotto Entry",     "Gerudo Valley",   "color_Grotto",               "Gerudo Valley" },
-    { "GV Behind Tent Grotto Entry",     "Gerudo Valley",   "color_Grotto",               "Gerudo Valley" },
+    { "GV Silver Rock Grotto Entry",     "Gerudo Valley",   "color_GerudoValley",               "Gerudo Valley" },
+    { "GV Behind Tent Grotto Entry",     "Gerudo Valley",   "color_GerudoValley",               "Gerudo Valley" },
     { "Carpenters' Tent",                "",                "color_GerudoValley",         "Gerudo Valley" },
     { "GV Octorok Grotto",               "",                "color_Grotto",               "Gerudo Valley" },
     { "GV Deku Scrub Grotto",            "",                "color_Grotto",               "Gerudo Valley" },
@@ -295,7 +295,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Gerudo Fortress East Exit",       "Gerudo Fortress", "color_GerudoValley",         "Gerudo Valley" },
     { "Gerudo Fortress Gate Exit",       "Gerudo Fortress", "color_GerudoValley",         "Gerudo Valley" },
     { "GF Outside Training Ground",      "Gerudo Fortress", "color_GerudoValley",         "Gerudo Valley" },
-    { "GF Storms Grotto Entry",          "Gerudo Fortress", "color_Grotto",               "Gerudo Valley" },
+    { "GF Storms Grotto Entry",          "Gerudo Fortress", "color_GerudoValley",               "Gerudo Valley" },
     { "GF Fairy Grotto",                 "",                "color_Grotto",               "Gerudo Valley" },
 
     // The Wasteland
@@ -304,16 +304,16 @@ const OEVEntranceData oevEntranceData[] = {
 
     // Desert Colossus
     { "Desert Colossus East Exit",     "Desert Colossus", "color_DesertColossus", "Desert Colossus" },
-    { "Colossus Great Fairy Entry",    "Desert Colossus", "color_Grotto",         "Desert Colossus" },
-    { "Colossus Grotto Entry",         "Desert Colossus", "color_Grotto",         "Desert Colossus" },
+    { "Colossus Great Fairy Entry",    "Desert Colossus", "color_DesertColossus",         "Desert Colossus" },
+    { "Colossus Grotto Entry",         "Desert Colossus", "color_DesertColossus",         "Desert Colossus" },
     { "Colossus Outside Temple",       "Desert Colossus", "color_DesertColossus", "Desert Colossus" },
     { "Colossus Great Fairy Fountain", "",                "color_Grotto",         "Desert Colossus" },
     { "Colossus Deku Scrub Grotto",    "",                "color_Grotto",         "Desert Colossus" },
     { "Spirit Temple Entrance",        "Spirit Temple",   "color_SpiritTemple",   "Desert Colossus" },
     { "Spirit Temple Boss Door",       "Spirit Temple",   "color_SpiritTemple",   "Desert Colossus" },
-    { "Twinrova",                      "Spirit Temple",   "color_SpiritTemple",   "Desert Colossus" },
-    { "Twinrova Blue Warp",            "Spirit Temple",   "color_SpiritTemple",   "Desert Colossus" },
-    { "Spirit Temple Blue Warp",       "Spirit Temple",   "color_DesertColossus", "Desert Colossus" },
+    { "Twinrova",                      "Twinrova",        "color_SpiritTemple",   "Desert Colossus" },
+    { "Twinrova Blue Warp",            "Twinrova",        "color_SpiritTemple",   "Desert Colossus" },
+    { "Spirit Temple Blue Warp",       "Desert Colossus", "color_DesertColossus", "Desert Colossus" },
     { "Desert Colossus Warp Pad",      "Desert Colossus", "color_DesertColossus", "Ocarina Songs" },
 
     // Market
@@ -343,12 +343,12 @@ const OEVEntranceData oevEntranceData[] = {
     { "ToT Courtyard Gossip Stones Exit", "Temple of Time Courtyard", "color_TempleofTime", "Hyrule Market" },
     { "ToT Courtyard Temple Entry",       "Temple of Time Courtyard", "color_TempleofTime", "Hyrule Market" },
     { "Temple of Time Entrance",          "Temple of Time",           "color_TempleofTime", "Hyrule Market" },
-    { "Temple of Time Warp Pad",          "Temple of Time",           "color_TempleofTime", "Ocarina Songs" },
+    { "Temple of Time",                   "Temple of Time",           "color_TempleofTime", "Hyrule Market" },
 
     // Hyrule Castle
     { "Castle Grounds South Exit",      "Hyrule Castle", "color_HyruleCastle",  "Hyrule Castle" },
-    { "HC Boulder Crawlspace",          "Hyrule Castle", "color_Grotto",        "Hyrule Castle" },
-    { "HC Storms Grotto Entry",         "Hyrule Castle", "color_Grotto",        "Hyrule Castle" },
+    { "HC Boulder Crawlspace",          "Hyrule Castle", "color_HyruleCastle",        "Hyrule Castle" },
+    { "HC Storms Grotto Entry",         "Hyrule Castle", "color_HyruleCastle",        "Hyrule Castle" },
     { "HC Great Fairy Fountain",        "",              "color_Grotto",        "Hyrule Castle" },
     { "HC Storms Grotto",               "",              "color_Grotto",        "Hyrule Castle" },
     { "OGC Behind Pillar",              "Hyrule Castle", "color_HyruleCastle",  "Hyrule Castle" },
@@ -373,43 +373,45 @@ void CreateObsidianFile(const std::filesystem::path path, const OEVEntranceData&
     // Create folder path if it doesn't exist
     std::filesystem::create_directories(path.parent_path());
 
-    // Build group file path
-    const std::filesystem::path groupFilePath =
-        std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
-        ("Save " + std::to_string(fileNumber)) / data.folder / (data.group + ".md");
-
-    // Check and create group file if it doesn't exist
-    if (!std::filesystem::exists(groupFilePath)) {
-        // Write to the new markdown file
-        std::ofstream outFile(path);
-        outFile << "Links to:\n";
-        outFile << "Color: " << data.color << "\n";
-        outFile.close();
-    }
-
     // Write to the new markdown file
     std::ofstream outFile(path);
     outFile << "Links to:\n";
     outFile << "Color: " << data.color << "\n";
     outFile.close();
+
+    // Create group if set
+    if (data.group != "") {
+        // Build group file path
+        const std::filesystem::path groupFilePath =
+            std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
+            ("Save " + std::to_string(fileNumber)) / (data.group + ".md");
+
+        // Check and create group file if it doesn't exist
+        if (!std::filesystem::exists(groupFilePath)) {
+            // Write to the new markdown file
+            std::ofstream outFile(groupFilePath);
+            outFile << "Links to:\n";
+            outFile << "Color: color_Group\n";
+            outFile.close();
+        }
+    }
 }
 
 // Create the obsidian markdown file for a given entrance
-void AddLinksToFile(const std::filesystem::path path, const std::string& linksFrom, const std::string& linksTo,
-                    const std::string& group,
-                    const std::string& folder) {
+void AddLinksToFile(const std::filesystem::path fromPath, const std::string& linksFrom, const std::string& linksTo,
+                    const std::string& fromGroup, const std::string& toGroup) {
     // Find the "Links to:" line and add the link if not already present
-    std::ifstream inFile(path);
+    std::ifstream inFile(fromPath);
     std::string fileContent;
     std::string line;
     std::string markdownLink = "[[" + linksTo + "]]";
-    std::string markdownLinkGroup = "[[" + group + "]]";
+    std::string markdownLinkGroup = "[[" + fromGroup + "]]";
     while (std::getline(inFile, line)) {
         if (line.rfind("Links to:", 0) == 0) {
-            if (line.find(markdownLink) == std::string::npos) {
+            if (linksTo != "" && line.find(markdownLink) == std::string::npos) {
                 line += " " + markdownLink;
             }
-            if (markdownLinkGroup != "[[]]" && line.find(markdownLinkGroup) == std::string::npos) {
+            if (fromGroup != "" && line.find(markdownLinkGroup) == std::string::npos) {
                 line += " " + markdownLinkGroup;
             }
         }
@@ -417,53 +419,77 @@ void AddLinksToFile(const std::filesystem::path path, const std::string& linksFr
     }
     inFile.close();
 
-    std::ofstream outFile(path);
+    std::ofstream outFile(fromPath);
     outFile << fileContent;
     outFile.close();
 
     
-    // Find the "Links to:" line of the group's markdown and add the link if not already present
-    if (group != "") {
+    // Backlink the group
+    if (fromGroup != "") {
         const std::filesystem::path groupFilePath =
             std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
-            ("Save " + std::to_string(fileNumber)) / folder / (group + ".md");
+            ("Save " + std::to_string(fileNumber)) / (fromGroup + ".md");
 
-        AddLinksToFile(groupFilePath, group, linksFrom, "", "");
+        AddLinksToFile(groupFilePath, fromGroup, linksFrom, "", "");
+    }
+    if (toGroup != "") {
+        const std::filesystem::path groupFilePath =
+            std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
+            ("Save " + std::to_string(fileNumber)) / (toGroup + ".md");
+
+        AddLinksToFile(groupFilePath, toGroup, linksTo, "", "");
     }
 
 
 }
 
 // Link two entrances together by creating markdown files in the OEV folder
-void LinkEntrances(const int32_t& fileNumber, const std::string& fromName, const std::string& toName,
-                   const bool& isOneWay) {
-    // Create the folder structure
-    OEVEntranceData toData = oevEntranceSearch(toName);
-    OEVEntranceData fromData = oevEntranceSearch(fromName);
+void LinkEntrances(const std::string& fromName, const std::string& toName, const bool& isOneWay) {
 
-    const std::filesystem::path toFilePath =
-        std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
-        ("Save " + std::to_string(fileNumber)) / toData.folder / (toData.name + ".md");
+    // Create the folder structure
+    OEVEntranceData fromData = oevEntranceSearch(fromName);
+    OEVEntranceData toData = oevEntranceSearch(toName);
 
     const std::filesystem::path fromFilePath =
         std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
-        ("Save " + std::to_string(fileNumber)) / fromData.folder / (fromData.name + ".md");
+        ("Save " + std::to_string(fileNumber)) / (fromData.name + ".md");
+
+    const std::filesystem::path toFilePath =
+        std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
+        ("Save " + std::to_string(fileNumber)) / (toData.name + ".md");
 
     // Check and create file if it doesn't exist
-    if (!std::filesystem::exists(fromFilePath)) {
+    if (fromName != "" && !std::filesystem::exists(fromFilePath)) {
         CreateObsidianFile(fromFilePath, fromData);
     }
-    if (!std::filesystem::exists(toFilePath)) {
+
+    if (toName != "" && !std::filesystem::exists(toFilePath)) {
         CreateObsidianFile(toFilePath, toData);
     }
 
     // Add source->destination link
-    AddLinksToFile(fromFilePath, fromData.name, toData.name, fromData.group, fromData.folder);
+    AddLinksToFile(fromFilePath, fromData.name, toData.name, fromData.group, toData.group);
 
     if (!isOneWay) {
         // Add backlink
-        AddLinksToFile(toFilePath, toData.name, fromData.name, toData.group, toData.folder);
+        AddLinksToFile(toFilePath, toData.name, fromData.name, toData.group, fromData.group);
+    } else {
+        // Only add backlink to the toData's group
+        AddLinksToFile(toFilePath, toData.name, "", toData.group, "");
     }
+
+    // Special cases where the destination in entranceData does not have its own entrance, but must be part of a group to have the map make sense
+    if (toData.name == "SFM Warp Pad" || toData.name == "DMC Warp Pad" || toData.name == "Lake Hylia Warp Pad" ||
+        toData.name == "Desert Colossus Warp Pad" || toData.name == "Graveyard Warp Pad"  ||
+        toData.name == "Temple of Time Warp Pad" || toData.name == "Kakariko Village Owl Drop" ||
+        toData.name == "Hyrule Field Owl Drop" || toData.name == "Lake Hylia River Exit") {
+
+        const std::filesystem::path extraFilePath =
+                std::filesystem::path(Ship::Context::GetPathRelativeToAppDirectory("Obsidian Entrance Visualizer")) /
+                ("Save " + std::to_string(fileNumber)) / (toData.name + ".md");
+        AddLinksToFile(extraFilePath, toData.name, toData.group, "", "");
+    }
+
 }
 
 void CheckForUnlinkedEntrances() {
@@ -505,6 +531,16 @@ void CheckForUnlinkedEntrances() {
             }
         }
 
+        // Special case because of typo in entranceData
+        if (toName == "ZR Deku SCrub Grotto") {
+            toName = "ZR Deku Scrub Grotto";
+        }
+
+        // Special case to consolidate ToT entrances
+        if (toName == "Temple of Time Warp Pad") {
+            toName = "Temple of Time";
+        }
+
         // Check if one or the other side of the entrance has already been linked
         bool alreadyLinked = false;
         for (LinkedEntrance linkedEntrance : linkedEntrances) {
@@ -528,17 +564,12 @@ void CheckForUnlinkedEntrances() {
             isOneWay = true;
         };
 
-        // Special case
-        if (toName == "Temple of Time") {
-            toName = "Temple of Time Warp Pad";
-        }
-
         // Find the matching markdown metadata mapping in oevEntranceData
         OEVEntranceData fromOEVData = oevEntranceSearch(fromName);
         OEVEntranceData toOEVData = oevEntranceSearch(toName);
 
         // Link the entrance
-        LinkEntrances(fileNumber, fromName, toName, isOneWay);
+        LinkEntrances(fromName, toName, isOneWay);
 
         // Add the entrance to linkedEntrances
         LinkedEntrance linkedEntrance = { fromIndex, toIndex };
