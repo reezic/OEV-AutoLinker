@@ -2555,7 +2555,8 @@ void RandomizerOnActorUpdateHandler(void* refActor) {
     }
 
     // In ER, override the warp song locations. Also removes the warp song cutscene
-    if (RAND_GET_OPTION(RSK_SHUFFLE_ENTRANCES) && actor->id == ACTOR_DEMO_KANKYO &&
+    // Commented out randomizer check, in OEV we always want to map entrances
+    if (/*RAND_GET_OPTION(RSK_SHUFFLE_ENTRANCES) && */actor->id == ACTOR_DEMO_KANKYO &&
         actor->params == 0x000F) { // Warp Song particles
         Entrance_SetWarpSongEntrance();
     }
@@ -2804,9 +2805,10 @@ static void RandomizerRegisterHooks() {
         Entrance_Init();
 
         // Handle randomized spawn positions after the save context has been setup from load
-        if (RAND_GET_OPTION(RSK_SHUFFLE_ENTRANCES)) {
-            Entrance_SetSavewarpEntrance();
-        }
+        // For OEV we do this always in order to map the spawn nodes
+        //if (RAND_GET_OPTION(RSK_SHUFFLE_ENTRANCES)) {
+        Entrance_SetSavewarpEntrance();
+        //}
 
         onFlagSetHook =
             GameInteractor::Instance->RegisterGameHook<GameInteractor::OnFlagSet>(RandomizerOnFlagSetHandler);
