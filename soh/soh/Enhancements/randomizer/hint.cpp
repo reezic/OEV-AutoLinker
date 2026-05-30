@@ -1,7 +1,7 @@
 #include "hint.h"
 #include "map"
 #include "string"
-#include "context.h"
+#include "SeedContext.h"
 #include <spdlog/spdlog.h>
 #include "static_data.h"
 
@@ -130,14 +130,8 @@ void Hint::FillGapsInData() {
     if (locations.size() == 0 && StaticData::staticHintInfoMap.contains(ownKey)) {
         locations = StaticData::staticHintInfoMap[ownKey].targetChecks;
     }
-    bool fillAreas = true;
-    bool fillItems = true;
-    if (areas.size() > 0) {
-        fillAreas = false;
-    }
-    if (items.size() > 0) {
-        fillItems = false;
-    }
+    bool fillAreas = areas.size() == 0;
+    bool fillItems = items.size() == 0;
     for (uint8_t c = 0; c < locations.size(); c++) {
         // if area matters for the hint, it should be specified and not left to this
         if (fillAreas) {
@@ -205,6 +199,7 @@ void Hint::NamesChosen() {
         hintType == HINT_TYPE_ALTAR_CHILD || hintType == HINT_TYPE_ALTAR_ADULT) {
         namesTemp = {};
         saveNames = false;
+
         for (uint8_t c = 0; c < areas.size(); c++) {
             uint8_t selection = GetRandomHintTextEntry(GetAreaHintText(c));
             if (selection > 0) {
@@ -223,10 +218,7 @@ size_t Hint::GetNumberOfMessages() const {
     if (StaticData::staticHintInfoMap.contains(ownKey)) {
         numMessages = std::max(StaticData::staticHintInfoMap[ownKey].hintKeys.size(), numMessages);
     }
-    if (numMessages == 0) {
-        numMessages = 1; // RANDOTODO make std::max actually fucking work for 3 arguments
-    }
-    return numMessages;
+    return std::max(numMessages, (size_t)1);
 }
 
 const std::vector<std::string> Hint::GetAllMessageStrings(MessageFormat format) const {
@@ -251,7 +243,6 @@ const HintText Hint::GetHintText(size_t id) const {
     switch (hintType) {
         case HINT_TYPE_HINT_KEY:
             return StaticData::hintTextTable[0];
-            break;
         case HINT_TYPE_TRIAL:
             if (ctx->GetTrial(trials[0])->IsRequired()) {
                 return StaticData::hintTextTable[RHT_TRIAL_ON];
@@ -299,6 +290,8 @@ const CustomMessage Hint::GetHintMessage(MessageFormat format, size_t id) const 
     } else if (hintType == HINT_TYPE_ALTAR_CHILD) {
         if (ctx->GetOption(RSK_TOT_ALTAR_HINT)) {
             hintText = StaticData::hintTextTable[RHT_CHILD_ALTAR_STONES].GetHintMessage();
+        } else {
+            hintText.SetTextBoxType(TEXTBOX_TYPE_BLUE);
         }
         if (ctx->GetOption(RSK_DOOR_OF_TIME).Is(RO_DOOROFTIME_OPEN)) {
             hintText += CustomMessage(StaticData::hintTextTable[RHT_CHILD_ALTAR_TEXT_END_DOTOPEN].GetHintMessage());
@@ -310,6 +303,8 @@ const CustomMessage Hint::GetHintMessage(MessageFormat format, size_t id) const 
     } else if (hintType == HINT_TYPE_ALTAR_ADULT) {
         if (ctx->GetOption(RSK_TOT_ALTAR_HINT)) {
             hintText = StaticData::hintTextTable[RHT_ADULT_ALTAR_MEDALLIONS].GetHintMessage();
+        } else {
+            hintText.SetTextBoxType(TEXTBOX_TYPE_BLUE);
         }
         hintText += GetBridgeReqsText() + GetGanonBossKeyText() +
                     StaticData::hintTextTable[RHT_ADULT_ALTAR_TEXT_END].GetHintMessage();
@@ -358,6 +353,7 @@ const CustomMessage Hint::GetHintMessage(MessageFormat format, size_t id) const 
     }
 
     hintText.InsertNames(toInsert);
+    hintText.SetSingularPlural();
 
     if (num != 0) {
         hintText.InsertNumber(num);
@@ -519,8 +515,7 @@ const HintText Hint::GetItemHintText(uint8_t slot, bool mysterious) const {
     RandomizerGet targetRG = ctx->GetItemLocation(hintedCheck)->GetPlacedRandomizerGet();
     if (mysterious) {
         return StaticData::hintTextTable[RHT_MYSTERIOUS_ITEM];
-    } else if (!ctx->GetOption(RSK_HINT_CLARITY).Is(RO_HINT_CLARITY_AMBIGUOUS) &&
-               targetRG == RG_ICE_TRAP) { // RANDOTODO store in item hint instead of item
+    } else if (targetRG == RG_ICE_TRAP) { // RANDOTODO store in item hint instead of item
         return HintText(CustomMessage({ ctx->overrides[hintedCheck].GetTrickName() }));
     } else {
         return ctx->GetItemLocation(hintedCheck)->GetPlacedItem().GetHint();
@@ -585,7 +580,7 @@ CustomMessage Hint::GetGanonBossKeyText() {
     auto ctx = Rando::Context::GetInstance();
     CustomMessage ganonBossKeyMessage;
 
-    if (ctx->GetOption(RSK_TRIFORCE_HUNT)) {
+    if (ctx->GetOption(RSK_TRIFORCE_HUNT).IsNot(RO_TRIFORCE_HUNT_OFF)) {
         return StaticData::hintTextTable[RHT_GANON_BK_TRIFORCE_HINT].GetHintMessage();
     }
 

@@ -2,17 +2,16 @@
 #include "soh/Enhancements/speechsynthesizer/SpeechSynthesizer.h"
 
 #include <cassert>
-#include <File.h>
-#include <Json.h>
+#include <ship/resource/File.h>
+#include <ship/resource/type/Json.h>
 #include <libultraship/classes.h>
 #include <nlohmann/json.hpp>
-#include <spdlog/fmt/fmt.h>
 
-#include "soh/OTRGlobals.h"
+#include "soh/ShipInit.hpp"
 #include "message_data_static.h"
 #include "overlays/gamestates/ovl_file_choose/file_choose.h"
 #include "soh/Enhancements/boss-rush/BossRush.h"
-#include "soh/resource/type/SohResourceType.h"
+#include "soh/Enhancements/FileSelectEnhancements.h"
 
 extern "C" {
 extern MapData* gMapData;
@@ -37,11 +36,10 @@ nlohmann::json fileChooseMap = nullptr;
 std::string GetParameritizedText(std::string key, TextBank bank, const char* arg) {
     switch (bank) {
         case TEXT_BANK_SCENES: {
-            return sceneMap[key].get<std::string>();
-            break;
+            return sceneMap.value(key, "unknown");
         }
         case TEXT_BANK_MISC: {
-            auto value = miscMap[key].get<std::string>();
+            auto value = miscMap.value(key, "unknown");
 
             std::string searchString = "$0";
             size_t index = value.find(searchString);
@@ -49,15 +47,11 @@ std::string GetParameritizedText(std::string key, TextBank bank, const char* arg
             if (index != std::string::npos) {
                 assert(arg != nullptr);
                 value.replace(index, searchString.size(), std::string(arg));
-                return value;
-            } else {
-                return value;
             }
-
-            break;
+            return value;
         }
         case TEXT_BANK_KALEIDO: {
-            auto value = kaleidoMap[key].get<std::string>();
+            auto value = kaleidoMap.value(key, "unknown");
 
             std::string searchString = "$0";
             size_t index = value.find(searchString);
@@ -65,15 +59,11 @@ std::string GetParameritizedText(std::string key, TextBank bank, const char* arg
             if (index != std::string::npos) {
                 assert(arg != nullptr);
                 value.replace(index, searchString.size(), std::string(arg));
-                return value;
-            } else {
-                return value;
             }
-
-            break;
+            return value;
         }
         case TEXT_BANK_FILECHOOSE: {
-            auto value = fileChooseMap[key].get<std::string>();
+            auto value = fileChooseMap.value(key, "unknown");
 
             std::string searchString = "$0";
             size_t index = value.find(searchString);
@@ -81,14 +71,11 @@ std::string GetParameritizedText(std::string key, TextBank bank, const char* arg
             if (index != std::string::npos) {
                 assert(arg != nullptr);
                 value.replace(index, searchString.size(), std::string(arg));
-                return value;
-            } else {
-                return value;
             }
-
-            break;
+            return value;
         }
     }
+    return "unknown";
 }
 
 const char* GetLanguageCode() {
@@ -141,34 +128,31 @@ void RegisterOnInterfaceUpdateHook() {
         static char ttsAnnounceBuf[32];
 
         uint32_t timer = 0;
-        if (gSaveContext.timerState != 0) {
+        if (gSaveContext.timerState != TIMER_STATE_OFF) {
             timer = gSaveContext.timerSeconds;
-        } else if (gSaveContext.subTimerState != 0) {
+        } else if (gSaveContext.subTimerState != SUBTIMER_STATE_OFF) {
             timer = gSaveContext.subTimerSeconds;
         }
 
-        if (timer > 0) {
-            if (timer > prevTimer || (timer % 30 == 0 && prevTimer != timer)) {
-                uint32_t minutes = timer / 60;
-                uint32_t seconds = timer % 60;
-                char* announceBuf = ttsAnnounceBuf;
-                char arg[8]; // at least big enough where no s8 string will overflow
-                if (minutes > 0) {
-                    snprintf(arg, sizeof(arg), "%d", minutes);
-                    auto translation = GetParameritizedText((minutes > 1) ? "minutes_plural" : "minutes_singular",
-                                                            TEXT_BANK_MISC, arg);
-                    announceBuf += snprintf(announceBuf, sizeof(ttsAnnounceBuf), "%s ", translation.c_str());
-                }
-                if (seconds > 0) {
-                    snprintf(arg, sizeof(arg), "%d", seconds);
-                    auto translation = GetParameritizedText((seconds > 1) ? "seconds_plural" : "seconds_singular",
-                                                            TEXT_BANK_MISC, arg);
-                    announceBuf += snprintf(announceBuf, sizeof(ttsAnnounceBuf), "%s", translation.c_str());
-                }
-                assert(announceBuf < ttsAnnounceBuf + sizeof(ttsAnnounceBuf));
-                SpeechSynthesizer::Instance->Speak(ttsAnnounceBuf, GetLanguageCode());
-                prevTimer = timer;
+        if (timer > 0 && timer % (timer < 60 ? 10 : 30) == 0 && timer != prevTimer) {
+            uint32_t minutes = timer / 60;
+            uint32_t seconds = timer % 60;
+            char* announceBuf = ttsAnnounceBuf;
+            char arg[8]; // at least big enough where no s8 string will overflow
+            if (minutes > 0) {
+                snprintf(arg, sizeof(arg), "%d", minutes);
+                auto translation =
+                    GetParameritizedText((minutes > 1) ? "minutes_plural" : "minutes_singular", TEXT_BANK_MISC, arg);
+                announceBuf += snprintf(announceBuf, sizeof(ttsAnnounceBuf), "%s ", translation.c_str());
             }
+            if (seconds > 0) {
+                snprintf(arg, sizeof(arg), "%d", seconds);
+                auto translation =
+                    GetParameritizedText((seconds > 1) ? "seconds_plural" : "seconds_singular", TEXT_BANK_MISC, arg);
+                announceBuf += snprintf(announceBuf, sizeof(ttsAnnounceBuf), "%s", translation.c_str());
+            }
+            assert(announceBuf < ttsAnnounceBuf + sizeof(ttsAnnounceBuf));
+            SpeechSynthesizer::Instance->Speak(ttsAnnounceBuf, GetLanguageCode());
         }
 
         prevTimer = timer;
@@ -372,9 +356,16 @@ void RegisterOnKaleidoscopeUpdateHook() {
                 auto translation = GetParameritizedText("magic", TEXT_BANK_KALEIDO, arg);
                 SpeechSynthesizer::Instance->Speak(translation.c_str(), GetLanguageCode());
             } else if (CHECK_BTN_ALL(input->press.button, BTN_DDOWN)) {
-                snprintf(arg, sizeof(arg), "%d", gSaveContext.rupees);
-                auto translation = GetParameritizedText("rupees", TEXT_BANK_KALEIDO, arg);
-                SpeechSynthesizer::Instance->Speak(translation.c_str(), GetLanguageCode());
+                if (gPlayState->sceneNum >= SCENE_FOREST_TEMPLE && gPlayState->sceneNum <= SCENE_INSIDE_GANONS_CASTLE) {
+                    snprintf(arg, sizeof(arg), "%d",
+                             std::max(gSaveContext.inventory.dungeonKeys[gPlayState->sceneNum], (s8)0));
+                    auto translation = GetParameritizedText("keys", TEXT_BANK_KALEIDO, arg);
+                    SpeechSynthesizer::Instance->Speak(translation.c_str(), GetLanguageCode());
+                } else {
+                    snprintf(arg, sizeof(arg), "%d", gSaveContext.rupees);
+                    auto translation = GetParameritizedText("rupees", TEXT_BANK_KALEIDO, arg);
+                    SpeechSynthesizer::Instance->Speak(translation.c_str(), GetLanguageCode());
+                }
             } else if (CHECK_BTN_ALL(input->press.button, BTN_DRIGHT)) {
                 // TODO: announce timer?
             }
@@ -842,20 +833,30 @@ void RegisterOnUpdateMainMenuSelection() {
             SpeechSynthesizer::Instance->Speak(translation.c_str(), GetLanguageCode());
         });
 
+    GameInteractor::Instance->RegisterGameHook<GameInteractor::OnUpdateFileRandomizerOptionSelection>(
+        [](uint8_t optionIndex) {
+            if (!CVarGetInteger(CVAR_SETTING("A11yTTS"), 0))
+                return;
+            uint8_t language = (gSaveContext.language == LANGUAGE_JPN) ? LANGUAGE_ENG : gSaveContext.language;
+
+            auto optionName = SohFileSelect_GetSettingText(optionIndex, language);
+            SpeechSynthesizer::Instance->Speak(optionName, GetLanguageCode());
+        });
+
     GameInteractor::Instance->RegisterGameHook<GameInteractor::OnUpdateFileNameSelection>([](int16_t charCode) {
         if (!CVarGetInteger(CVAR_SETTING("A11yTTS"), 0))
             return;
 
-        char charVal[2];
+        char charVal[2] = {};
         std::string translation;
 
         if (charCode < 10) { // Digits
-            sprintf(charVal, "%c", charCode + 0x30);
+            charVal[0] = charCode + 0x30;
         } else if (charCode >= 10 && charCode < 36) { // Uppercase letters
-            sprintf(charVal, "%c", charCode + 0x37);
+            charVal[0] = charCode + 0x37;
             translation = GetParameritizedText("capital_letter", TEXT_BANK_FILECHOOSE, charVal);
         } else if (charCode >= 36 && charCode < 62) { // Lowercase letters
-            sprintf(charVal, "%c", charCode + 0x3D);
+            charVal[0] = charCode + 0x3D;
         } else if (charCode == 62) { // Space
             translation = GetParameritizedText("space", TEXT_BANK_FILECHOOSE, nullptr);
         } else if (charCode == 63) { // -
@@ -867,7 +868,7 @@ void RegisterOnUpdateMainMenuSelection() {
         } else if (charCode == 0xF0 + FS_KBD_BTN_END) {
             translation = GetParameritizedText("end", TEXT_BANK_FILECHOOSE, nullptr);
         } else {
-            sprintf(charVal, "%c", charCode);
+            charVal[0] = charCode;
         }
 
         if (translation.empty()) {
@@ -1184,7 +1185,7 @@ void RegisterOnSetDoAction() {
     });
 }
 
-void RegisterTTSModHooks() {
+static void RegisterTTSModHooks() {
     RegisterOnSetGameLanguageHook();
     RegisterOnDialogMessageHook();
     RegisterOnSceneInitHook();
@@ -1195,7 +1196,9 @@ void RegisterTTSModHooks() {
     RegisterOnSetDoAction();
 }
 
-void RegisterTTS() {
+static void RegisterTTS() {
     InitTTSBank();
     RegisterTTSModHooks();
 }
+
+static RegisterShipInitFunc initFunc(RegisterTTS);
