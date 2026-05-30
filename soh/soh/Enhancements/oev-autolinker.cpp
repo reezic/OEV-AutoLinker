@@ -77,7 +77,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "LW North Grotto Entry",          "Lost Woods",        "color_KokiriForest",       "Lost Woods" },
     { "LW Meadow Grotto Entry",         "Lost Woods",        "color_KokiriForest",       "Lost Woods" },
     { "LW Tunnel Grotto",               "",                  "color_Grotto",       "Lost Woods" },
-    { "LW Scrubs Grotto",               "",                  "color_Grotto",       "Lost Woods" },
+    { "LW Deku Scrub Grotto",               "",                  "color_Grotto",       "Lost Woods" },
     { "Deku Theater",                   "",                  "color_Grotto",       "Lost Woods" },
 
     // Sacred Forest Meadow
@@ -175,7 +175,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "Death Mountain Crater Outside Temple", "Death Mountain Crater", "color_DeathMountain", "Death Mountain Crater" },
     { "DMC Great Fairy Fountain",             "",                      "color_Grotto",        "Death Mountain Crater" },
     { "DMC Upper Grotto",                     "",                      "color_Grotto",        "Death Mountain Crater" },
-    { "DMC Scrubs Grotto",                    "",                      "color_Grotto",        "Death Mountain Crater" },
+    { "DMC Deku Scrub Grotto",                    "",                      "color_Grotto",        "Death Mountain Crater" },
     { "Fire Temple Entrance",                 "Fire Temple",           "color_FireTemple",    "Death Mountain Crater" },
     { "Fire Temple Boss Door",                "Fire Temple",           "color_FireTemple",    "Death Mountain Crater" },
     { "Volvagia",                             "Volvagia",              "color_FireTemple",    "Death Mountain Crater" },
@@ -190,7 +190,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "GC Shop Entry",                      "Goron City", "color_GoronCity", "Goron City" },
     { "GC Lava Grotto Entry",               "Goron City", "color_GoronCity",    "Goron City" },
     { "Goron Shop",                         "",           "color_GoronCity", "Goron City" },
-    { "GC Scrubs Grotto",                   "",           "color_Grotto",    "Goron City" },
+    { "GC Deku Scrub Grotto",                   "",           "color_Grotto",    "Goron City" },
 
     // Zora's River
     { "Zora's River Lower Exit",          "Zora's River", "color_ZorasRiver", "Zora's River" },
@@ -248,7 +248,7 @@ const OEVEntranceData oevEntranceData[] = {
     { "HF Fairy Grotto",                     "",             "color_Grotto",      "Hyrule Field" },
     { "HF Cow Grotto",                       "",             "color_Grotto",      "Hyrule Field" },
     { "HF Open Grotto",                      "",             "color_Grotto",      "Hyrule Field" },
-    { "HF Fenced Scrub Grotto",              "",             "color_Grotto",      "Hyrule Field" },
+    { "HF Fenced Deku Scrub Grotto",              "",             "color_Grotto",      "Hyrule Field" },
     { "HF Southeast Grotto",                 "",             "color_Grotto",      "Hyrule Field" },
 
     // Lon Lon Ranch
@@ -499,7 +499,7 @@ void CheckForUnlinkedEntrances() {
     }
 
     // Get the randomizer's entrance pool
-    const std::span<const EntranceData> entranceData = GetAllEntranceData();
+    const std::span<const EntranceData> entranceData = EntranceTracker::GetAllEntranceData();
 
     // Get the entrance overrides
     auto entranceOverrides = Rando::Context::GetInstance()->GetEntranceShuffler()->entranceOverrides;
@@ -509,8 +509,13 @@ void CheckForUnlinkedEntrances() {
     // in the save's OEV folder and add it to the linkedEntrances array
     for (const EntranceData entrance : entranceData) {
 
+        bool test = false;
+        if (entrance.source == "HF South Open Grotto Entry") {
+            test = true;
+        }
+
         // If not discovered, skip this loop iteration
-        if (!IsEntranceDiscovered(entrance.index)) {
+        if (!EntranceTracker::IsEntranceDiscovered(entrance.index)) {
             continue;
         }
 
@@ -525,15 +530,10 @@ void CheckForUnlinkedEntrances() {
         for (EntranceOverride override : entranceOverrides) {
             if (entrance.index == override.index) {
                 toIndex = override.override;
-                toName = GetEntranceData(toIndex)->destination;
+                toName = EntranceTracker::GetEntranceData(toIndex)->destination;
                 entranceOverride = override;
                 break;
             }
-        }
-
-        // Special case because of typo in entranceData
-        if (toName == "ZR Deku SCrub Grotto") {
-            toName = "ZR Deku Scrub Grotto";
         }
 
         // Special case to consolidate ToT entrances
@@ -560,7 +560,7 @@ void CheckForUnlinkedEntrances() {
         
         bool isOneWay = false;
         
-        if (GetEntranceData(toIndex)->reverseIndex == -1 || entranceOverride.destination == -1) {
+        if (EntranceTracker::GetEntranceData(toIndex)->reverseIndex == -1 || entranceOverride.destination == -1) {
             isOneWay = true;
         };
 

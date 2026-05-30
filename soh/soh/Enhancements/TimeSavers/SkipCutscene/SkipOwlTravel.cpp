@@ -30,9 +30,10 @@ static s16 GetEntranceIndex(s32 owlType) {
             return ENTR_MAX;
     }
 
-    if (IS_RANDO && Randomizer_GetSettingValue(RSK_SHUFFLE_OWL_DROPS)) {
-        entranceIndex = Entrance_OverrideNextIndex(entranceIndex);
-    }
+    // With Obsidian Entrance Visualizer we want to always map the entrances
+    //if (IS_RANDO && Randomizer_GetSettingValue(RSK_SHUFFLE_OWL_DROPS)) {
+    entranceIndex = Entrance_OverrideNextIndex(entranceIndex);
+    //}
 
     return entranceIndex;
 }

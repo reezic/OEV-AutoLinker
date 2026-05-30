@@ -487,6 +487,11 @@ const EntranceData* GetEntranceData(s16 index) {
     return nullptr;
 }
 
+// Modify the return statement to create a span from the array
+const std::span<const EntranceData> GetAllEntranceData() {
+    return std::span<const EntranceData>(entranceData, std::size(entranceData));
+}
+
 void LoadFromPreset(nlohmann::json info) {
     presetLoaded = true;
     presetPos = { info["pos"]["x"], info["pos"]["y"] };

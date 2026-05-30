@@ -254,11 +254,13 @@ s16 Grotto_OverrideSpecialEntrance(s16 nextEntranceIndex) {
 // thisx - pointer to the grotto actor
 void Grotto_OverrideActorEntrance(Actor* thisx) {
     // Vanilla Behavior if there's no possibility of ending up in a grotto randomly
-    if (!Randomizer_GetSettingValue(RSK_SHUFFLE_GROTTO_ENTRANCES) &&
+    
+    // This is commented out in order to always map out the grotto entrances for the OEV Entrance Visualizer
+    /*if (!Randomizer_GetSettingValue(RSK_SHUFFLE_GROTTO_ENTRANCES) &&
         !Randomizer_GetSettingValue(RSK_SHUFFLE_OVERWORLD_SPAWNS) &&
         !Randomizer_GetSettingValue(RSK_SHUFFLE_WARP_SONGS)) {
         return;
-    }
+    }*/
 
     s8 grottoContent = thisx->params & 0x00FF;
 
@@ -269,6 +271,13 @@ void Grotto_OverrideActorEntrance(Actor* thisx) {
         if (grottoContent == grottoLoadTable[index].content && gPlayState->sceneNum == grottoLoadTable[index].scene) {
             // Find the override for the matching index from the grotto Load List
             Entrance_SetEntranceDiscovered(ENTRANCE_GROTTO_LOAD_START + index, false);
+            
+            if (!Randomizer_GetSettingValue(RSK_SHUFFLE_GROTTO_ENTRANCES) &&
+                !Randomizer_GetSettingValue(RSK_SHUFFLE_OVERWORLD_SPAWNS) &&
+                !Randomizer_GetSettingValue(RSK_SHUFFLE_WARP_SONGS)) {
+                return;
+            }
+
             EntranceTracker_SetLastEntranceOverride(ENTRANCE_GROTTO_LOAD_START + index);
             index = grottoLoadList[index];
 
