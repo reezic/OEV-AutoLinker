@@ -1,4 +1,4 @@
-## Obsidian Entrance Visualizer, AutoLinker for SoH
+## Obsidian Entrance Visualizer for SoH
 This build of Ship of Harkinian automatically creates discovered entrances as linked markdown files which can be viewed as a node map in Obsidian, resulting in an evolving map of the game as you play.<br>
 
 <br>
