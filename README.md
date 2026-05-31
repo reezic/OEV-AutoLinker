@@ -60,11 +60,12 @@ _Saves from other builds of SoH will not work with the AutoLinker functionality.
 ## Recommended plugins
 I highly recommend these plugins for Obsidian to make the experience better:
 
-<br>
+[libasoles' unofficial "Graph View Text Size" plugin](https://github.com/libasoles/graph-view-text-size) (Included in this release of OEV Autolinker)<br>
+Since this is an unofficial plugin requiring you to follow the build instructions on libasoles' GitHub, I've already included it in the latest release of OEV Autolinker.
 
-[jerrywcy's "Obsidian Path Finder Plugin"](https://github.com/jerrywcy/obsidian-path-finder)<br>
-Lets you quickly search for the shortest path from one node to another.<br>
-Press CTRL+P, then search for Path Finder and input your source and destination names.
+This plugin allows you to change the text size and color of the node text so that it matches with the color of the node itself, making the map more readable.
+
+(If nodes aren't updating with the correct styles, just click one of the tag nodes and they should refresh)
 
 <br>
 
@@ -73,12 +74,3 @@ This plugin lets you save node positions in the graph view.
 
 To save your node layout, press CRTL+P, then search for "save" and click "Persistent Graph: Save graph node positions".<br>
 To load saved node layouts click "Persistent Graph: Restore graph node locations".
-
-<br>
-
-[libasoles' unofficial "Graph View Text Size" plugin](https://github.com/libasoles/graph-view-text-size).<br>
-Requires you to follow the build instructions on libasoles' GitHub.
-
-This plugin allows you to change the text size and color of the node text so that it matches with the color of the node itself, making the map more readable.
-
-(If nodes aren't updating with the correct styles, just click one of the tag nodes and they should refresh)
