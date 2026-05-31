@@ -69,7 +69,7 @@ This plugin allows you to change the text size and color of the node text so tha
 
 If nodes aren't updating with the correct styles, just click one of them and they should refresh.
 
-I recommend pinning the graph view (right click the tab in Obsidian) dragging the tab of the clicked node to one side in a split pane view to minimize the disruption of clicking on nodes to refresh the graph.
+I recommend pinning the graph view (right click the tab in Obsidian) then dragging the tab with the clicked node's contents to one side so that you have the node content and the graph in a split pane view to minimize the disruption of clicking on nodes to refresh the graph.
 
 <br>
 
