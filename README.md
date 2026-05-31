@@ -39,7 +39,7 @@ _Sample maps with various randomizer settings._
 <br>
 
 ## How does it work?
-* [Download the latest release of OEV](https://github.com/reezic/OEV-AutoLinker/releases/tag/1.5.2)
+* [Download the latest release of OEV](https://github.com/reezic/SoH-OEV/releases/tag/1.5.2)
 
 * [Download Obsidian](https://obsidian.md/)
 
