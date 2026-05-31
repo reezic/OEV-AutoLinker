@@ -65,7 +65,7 @@ Since this is an unofficial plugin requiring you to follow the build instruction
 
 This plugin allows you to change the text size and color of the node text so that it matches with the color of the node itself, making the map more readable.
 
-If nodes aren't updating with the correct styles, just click one of them nodes and they should refresh.
+If nodes aren't updating with the correct styles, just click one of them and they should refresh.
 I recommend pinning the graph view (right click the tab in Obsidian) dragging the tab of the clicked node to one side in a split pane view to minimize the disruption of clicking on nodes to refresh the graph.
 
 <br>
